@@ -225,27 +225,26 @@ minutes_input.addEventListener("keyup", (e)=>{
     console.log(start_value);
     minutes_input.value = start_value;
     if (!allowed_symbols.includes(e.key)) {
+        console.log(start_value);
         console.log("key not allowed");
-        minutes_input.value = minutes_input.value
+        minutes_input.value = "";
+        minutes_input.value = start_value;
     }
 })
 
+start_button.addEventListener("click", (e)=>{
 
-function start_timer(miliseconds) {
-    const current_minutes = document.querySelector("#minutes").value;
-    const current_seconds = document.querySelector("#seconds").value;
+    start_timer(minutes, seconds);
+})
 
-    console.log(current_minutes);
-    console.log(current_seconds);
-    /*
-    const seconds = miliseconds / 60;
-    if (seconds > 0) {
-        setTimeout(()=> {
-            seconds - 1;
 
-        }, 1000)
-    }
-    */
+function timer() {
+    const minutes = parseInt(document.querySelector("#minutes").value);
+    const seconds = parseInt(document.querySelector("#seconds").value);
+    setTimeout(()=>{
+        minutes_input.value = minutes - 1;
+        seconds_input.value = seconds - 1;
+    }, 1000)
 }
 
 start_timer()
