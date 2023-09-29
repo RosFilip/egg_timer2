@@ -1,0 +1,23 @@
+#timer{
+    display: flex;
+}
+
+#timer input {
+    border: none;
+    width: 30px;
+}
+#timer input:focus {
+    border: none;
+    outline: none;
+}
+
+#start_button{
+    height: 100px;
+    width: 100px;
+    border: 1px solid lightblue;
+    margin-top: 50px;
+}
+#start_button::before{
+    content: "PRESS MEEE";
+    cursor: pointer;
+}
