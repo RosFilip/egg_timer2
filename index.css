@@ -1,0 +1,117 @@
+/* GENERAL STYLING */
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1C293D;
+    overflow: hidden;
+}
+
+#main_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100vw;
+
+    padding: 20px;
+}
+
+#main_container > div{
+    width: 100%;
+}
+
+/* Egg sizing */
+
+#egg_size_selector_container{
+    display: flex;
+    justify-content: space-between;
+    height: 25%;
+}
+
+.egg_size_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: white;
+    font-size: 14px;
+}
+.egg_size{
+    height: 80px; /* for testing purposes */
+    width: 80px; /* for testing purposes */
+
+
+    background-image: url(./media/egg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.egg_size:hover{
+    background-image: url(./media/egg\ selected.png);
+}
+.egg_size.selected{background-image: url(./media/egg\ selected.png);}
+
+
+
+
+/* boiled type styling*/
+
+#egg_boild_type_container{
+    height: 35%;
+    border: 1px solid lightblue;
+}
+#egg_boild_type_container > #slider{
+    display: grid;
+    grid-template-columns: repeat(3, 100%);
+    height: 100%;
+    width: 100%;
+
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-snap-align: start;
+    overflow-y: hidden;
+}
+
+
+.test{
+    float: left;
+    text-align: center;
+    font-size: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+#timer{
+    display: flex;
+}
+
+#timer input {
+    border: none;
+    width: 30px;
+}
+#timer input:focus {
+    border: none;
+    outline: none;
+}
+
+#start_button{
+    height: 100px;
+    width: 100px;
+    border: 1px solid lightblue;
+    margin-top: 50px;
+}
+#start_button::before{
+    content: "PRESS MEEE";
+    cursor: pointer;
+}

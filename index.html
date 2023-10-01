@@ -4,17 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./inedex.css">
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-    <div id="timer">
-        <input id="minutes" maxlength="2" value="03"></input>
-        <div>:</div>
-        <input id="seconds" pattern="0-9" maxlength="2" max="" value="45"></input>
+    <div id="main_container">
+        <div id="egg_size_selector_container">
+            <div id="egg_S_container" class="egg_size_container">
+                <div class="egg_size selected"></div>
+                <p>S</p>
+                <p>53 <</p>
+            </div>
+            <div id="egg_M_container" class="egg_size_container">
+                <div class="egg_size selected"></div>
+                <p>M</p>
+                <p>53 - 62</p>
+            </div>
+            <div id="egg_L_container" class="egg_size_container">
+                <div class="egg_size selected"></div>
+                <p>L</p>
+                <p>63 - 72</p>
+            </div>
+            <div id="egg_XL_container" class="egg_size_container">
+                <div class="egg_size selected"></div>
+                <p>XL</p>
+                <p>> 72</p>
+            </div>
+        </div>
+
+        <div id="egg_boild_type_container">
+            <div id="slider">
+                <div class="test">1</div>
+                <div class="test">2</div>
+                <div class="test">3</div>
+            </div>
+        </div>
+
+        <div id="temp_selector_container">
+
+        </div>
+
+        <div id="timer_container">
+            <div id="timer">
+                <input id="minutes" maxlength="2" value="03"></input>
+                <div>:</div>
+                <input id="seconds" pattern="0-9" maxlength="2" max="" value="45"></input>
+            </div>
+            <div id="start_button"></div>
+        </div>
+
     </div>
 
-
-    <div id="start_button"></div>
     <script src="./app.js"></script>
 </body>
 </html>
