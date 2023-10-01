@@ -216,36 +216,98 @@ const egg_combinations = [
 ]
 const minutes_input = document.querySelector("#minutes");
 const seconds_input = document.querySelector("#seconds");
-const allowed_symbols = ["0","1","2","3","4","5","6","7","8","9", "Backspace", "ArrowRight", "ArrowLeft"];
 const start_button = document.querySelector("#start_button");
 
+add_event_listeners();
 
-minutes_input.addEventListener("keyup", (e)=>{
-    const start_value = minutes_input.value;
-    console.log(start_value);
-    minutes_input.value = start_value;
-    if (!allowed_symbols.includes(e.key)) {
-        console.log(start_value);
-        console.log("key not allowed");
-        minutes_input.value = "";
-        minutes_input.value = start_value;
-    }
-})
+const timer = {
+    set_minutes: (minutes) => {
+        console.log(minutes);
+        if (minutes < 10) {
+            minutes = `0${minutes}`
+        }
+        minutes_input.value = minutes;
+    },
+    set_seconds: (seconds) => {
+            if (seconds < 10) {
+                seconds = `0${seconds}`
+            }
+        seconds_input.value = seconds;
+    },
 
-start_button.addEventListener("click", (e)=>{
+    minutes_input_check: (start_value)=> {
+        let input;
+        minutes_input.addEventListener("keyup", (e)=>{  
+            input = parseInt(minutes_input.value);
+        });
+        minutes_input.addEventListener("focusout", check)
+        function check() {
+            if (input < 10 && input > 0 && input) {  minutes_input.value = `0${input}`; }
+            if (input === undefined || isNaN(input) || input > 59 ) {
+                console.log("input not allowed");
+                timer.set_minutes(start_value);
+                minutes_input.removeEventListener("focusout", check);
+                return 
+            }
+            
+        }
+    },
+    seconds_input_check: (start_value)=> {
+        let input;
+        seconds_input.addEventListener("keyup", (e)=>{  
+            input = parseInt(seconds_input.value);
+        });
+        seconds_input.addEventListener("focusout", check)
+        console.log("test");
+        function check() {
+            if (input < 10 && input > 0 && input) {  seconds_input.value = `0${input}`; }
+            if (input === undefined || isNaN(input) || input > 59 ) {
+                console.log("input not allowed");
+                timer.set_seconds(start_value);
+                seconds_input.removeEventListener("focusout", check);
+                return 
+            }
+            
+        }
 
-    start_timer(minutes, seconds);
-})
+    },
+    start_timer: (minutes, seconds) => {
+        if (seconds === 0 && minutes === 0) {
+            // timer finished
+            console.log("finished");
+            return
+        }
+        setTimeout(()=>{
+            seconds -= 1
+            if (seconds === 0 && minutes > 0) {
+                minutes -= 1;
+                seconds = 59;
+            }
+
+            timer.set_minutes(minutes)
+            timer.set_seconds(seconds);
+            timer.start_timer(minutes, seconds);
+        }, 1000)
+    },
 
 
-function timer() {
-    const minutes = parseInt(document.querySelector("#minutes").value);
-    const seconds = parseInt(document.querySelector("#seconds").value);
-    setTimeout(()=>{
-        minutes_input.value = minutes - 1;
-        seconds_input.value = seconds - 1;
-    }, 1000)
 }
 
-start_timer()
+function add_event_listeners(params) {
+    minutes_input.addEventListener("focus", ()=>{
+        const start_value = parseInt(minutes_input.value);
+        timer.minutes_input_check(start_value);
+    })
+    seconds_input.addEventListener("focus", ()=>{
+        console.log("test");
+        const start_value = parseInt(seconds_input.value);
+        timer.seconds_input_check(start_value);
+    })
 
+    start_button.addEventListener("click", (e)=>{
+        console.log("start timer");
+        const minutes = parseInt(minutes_input.value);
+        const seconds = parseInt(seconds_input.value);
+        timer.start_timer(minutes, seconds);
+    });
+}
