@@ -41,6 +41,13 @@ input{
     background-color: transparent;
 }
 
+#selection_container{
+    display: flex;
+flex-direction: column;
+height: 70%;
+justify-content: space-between;
+}
+
 /* EGG SIZING */
 
 #egg_size_selector_container{
