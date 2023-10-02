@@ -3,7 +3,7 @@
     // boiled type
     // temp på ägget
   
-    // loop med massa object, där varje objekt 
+    // loop med massa object, där varje objekt är en egg kombo
     // for of, egg of egg_combinations
     // egg.find(egg_obj => {
     // 
