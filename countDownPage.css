@@ -1,42 +1,82 @@
 :root {
     --positive-angle: 2deg;
     --negative-angle: -2deg;
+    --potBorder: 4px solid black;
 }
 
 #main_container {
-    position: relative;
+    /* position: relative; */
 }
 
 #title {
     position: absolute;
-    top: 10px;
-    font-size: 13vw;
+    top: 20px;
+    font-size: 15vw;
+    font-family: "baloo-bold";
 }
 
 #potBottom {
     height: 40vw;
-    background-color: white;
-    border-radius: 0 0 20px 20px;
-}
-
-#potLid {
+    background-color: #5b5b5b;
+    border-radius: 0 0 90px 90px;
+    border: var(--potBorder);
     position: relative;
-    height: 6vw;
-    background-color: white;
-    border-radius: 20px 20px 0 0;
-    margin: 5vh 0;
-    display: flex;
-    justify-content: center;
-    animation: shakeLid .5s linear infinite;
+
 
     &::before {
         content: "";
         position: absolute;
-        height: 8vw;
+        top: 2px;
+        right: 0;
+        top: 8px;
+        right: 0;
+        bottom: 9px;
+        left: 15px;
+        background-color: #afafaf;
+        border-radius: 5px 0 65px 90px;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 4vw;
+        height: 13vw;
+        background-color: rgb(216, 216, 216);
+        border-radius: 20px;
+        right: 44px;
+        top: 58px;
+    }
+
+    & .tenor-gif-embed {
+        width: 20vw;
+        position: absolute;
+    }
+}
+
+#potLid {
+    position: relative;
+    height: 9vw;
+    background-color: var(--color-goldish);
+    border-radius: 20px 20px 0 0;
+    border: var(--potBorder);
+    margin: 5vh 0;
+    display: flex;
+    justify-content: center;
+
+    /* animation: shakeLid .5s linear infinite; */
+
+    &::before {
+        content: "";
+        position: absolute;
+        height: 4vw;
         width: 15vw;
         border-radius: 20px 20px 0 0;
-        background-color: white;
-        bottom: 40%;
+        border-top: var(--potBorder);
+        border-left: var(--potBorder);
+        border-right: var(--potBorder);
+        background-color: var(--color-goldish);
+        bottom: 97%;
+
     }
 }
 
@@ -46,11 +86,14 @@
 }
 
 .bubble {
-    position: relative;
+    position: absolute;
+    z-index: -1;
     height: 10vw;
     width: 10vw;
     border-radius: 50%;
     background-color: rgb(42, 165, 214);
+    /* animation: floatBubble 8s linear infinite,
+        sideWays 1s ease-in-out infinite alternate; */
 
     &::before {
         content: "";
@@ -75,7 +118,73 @@
     }
 }
 
-/* @keyframes shakeLid {
+.bubble:nth-child(1) {
+    right: 5%;
+    scale: .5;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(2) {
+    right: 20%;
+    scale: .8;
+    animation-delay: 1s;
+
+}
+
+.bubble:nth-child(3) {
+    right: 40%;
+    animation-delay: 1.7s;
+}
+
+.bubble:nth-child(4) {
+    right: 55%;
+    scale: .9;
+    animation-delay: 4s;
+}
+
+.bubble:nth-child(5) {
+    right: 70%;
+    scale: .7;
+
+}
+
+.bubble:nth-child(6) {
+    right: 85%;
+    animation-delay: 3s;
+}
+
+.bubble:nth-child(7) {
+    right: 15%;
+    animation-delay: 5s;
+}
+
+.bubble:nth-child(8) {
+    right: 30%;
+    scale: .6;
+    animation-delay: 4.5s;
+}
+
+@keyframes floatBubble {
+    0% {
+        top: 0px;
+    }
+
+    100% {
+        top: -250px;
+    }
+}
+
+@keyframes sideWays {
+    0% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(8px);
+    }
+}
+
+@keyframes shakeLid {
     0% {
         transform: rotate(var(--negative-angle));
     }
@@ -87,4 +196,4 @@
     100% {
         transform: rotate(var(--negative-angle));
     }
-} */
+}

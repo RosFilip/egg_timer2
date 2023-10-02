@@ -1,27 +1,42 @@
+/* ROOT */
+:root {
+    --color-goldish: #DBA21C;
+    --color-darkBlue: #1C293D;
+    --color-lightYellow: #FFEDCB;
+    --color-lightBrown: #D19E71;
+
+}
+
 /* FONT*/
 @font-face {
-    font-family: inter;
+    font-family: "inter";
     src: url(./media/font/Inter-VariableFont_slnt\,wght.ttf);
 }
 
+@font-face {
+    font-family: "baloo-bold";
+    src: url(./media/font/baloo/Baloo2-Bold.ttf);
+}
+
+
 /* GENERAL STYLING */
 
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     color: white;
-    font-family: inter;
+    font-family: "inter";
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #1C293D;
 }
 
-#main_container{
+#main_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,23 +48,23 @@ body{
     padding: 20px;
 }
 
-#main_container > div{
+#main_container>div {
     width: 100%;
 }
 
-input{
+input {
     background-color: transparent;
 }
 
 /* Egg sizing */
 
-#egg_size_selector_container{
+#egg_size_selector_container {
     display: flex;
     justify-content: space-between;
     height: 25%;
 }
 
-.egg_size_container{
+.egg_size_container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,9 +72,12 @@ input{
     color: white;
     font-size: 14px;
 }
-.egg_size{
-    height: 80px; /* for testing purposes */
-    width: 80px; /* for testing purposes */
+
+.egg_size {
+    height: 80px;
+    /* for testing purposes */
+    width: 80px;
+    /* for testing purposes */
 
 
     background-image: url(./media/egg.png);
@@ -68,21 +86,24 @@ input{
     background-size: contain;
 }
 
-.egg_size:hover{
+.egg_size:hover {
     background-image: url(./media/egg\ selected.png);
 }
-.egg_size.selected{background-image: url(./media/egg\ selected.png);}
+
+.egg_size.selected {
+    background-image: url(./media/egg\ selected.png);
+}
 
 
 
 
 /* boiled type styling*/
 
-#egg_boild_type_container{
+#egg_boild_type_container {
     height: 35%;
 }
 
-#egg_boild_type_container > #slider{
+#egg_boild_type_container>#slider {
     display: grid;
     align-items: center;
     grid-template-columns: repeat(6, 55%);
@@ -95,15 +116,18 @@ input{
     scroll-snap-align: start;
     overflow-y: hidden;
 
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
-#egg_boild_type_container > #slider::-webkit-scrollbar {
+
+#egg_boild_type_container>#slider::-webkit-scrollbar {
     display: none;
 }
 
 
-.egg_container{
+.egg_container {
     text-align: center;
     font-size: 30px;
     width: 100%;
@@ -111,7 +135,8 @@ input{
     scroll-snap-align: center;
 
 }
-.egg_container .egg_image{
+
+.egg_container .egg_image {
     height: 80%;
 
     background-image: url(./media/egg.png);
@@ -120,7 +145,7 @@ input{
     background-size: contain;
 }
 
-#timer{
+#timer {
     display: flex;
 }
 
@@ -130,18 +155,20 @@ input{
     background-color: transparent;
     text-align: center;
 }
+
 #timer input:focus {
     border: none;
     outline: none;
 }
 
-#start_button{
+#start_button {
     height: 100px;
     width: 100px;
     border: 1px solid lightblue;
     margin-top: 50px;
 }
-#start_button::before{
+
+#start_button::before {
     content: "PRESS MEEE";
     cursor: pointer;
 }
