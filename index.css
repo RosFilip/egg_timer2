@@ -86,7 +86,7 @@ justify-content: space-between;
 /* BOILED TYPE */
 
 #egg_boild_type_container{
-    height: 30%;
+    height: 36%;
 }
 
 #egg_boild_type_container > #slider{
@@ -112,11 +112,10 @@ justify-content: space-between;
 
 .egg_container{
     text-align: center;
-    font-size: 30px;
+    font-size: 16px;
     width: 100%;
     height: 100%;
     scroll-snap-align: center;
-
 }
 .egg_container .egg_image{
     height: 80%;
@@ -125,6 +124,11 @@ justify-content: space-between;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+}
+.egg_container.selected > .egg_image {
+    height: 90%;
+    transition: ease-in-out;
+    transition: 1s;
 }
 /* TEMP SELECTOR*/
 #temp_selector_container{

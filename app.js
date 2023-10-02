@@ -16,49 +16,66 @@ const egg_combinations = [
         size: "S",
         boiled_type: "runny",
         stored_temp: "cold",
-        time: (60 * 3 + 39) * 1000
+        time: (60 * 3 + 39) * 1000,
+        minutes: 3,
+        seconds: 39,
+
     },
     {
         size: "S",
-        boiled_type: "soft boiled",
+        boiled_type: "soft",
         stored_temp: "cold",
-        time: (60 * 6 + 11) * 1000
+        time: (60 * 6 + 11) * 1000,
+        minutes: 6,
+        seconds: 11,
     },
     {
         size: "S",
-        boiled_type: "hard boiled",
+        boiled_type: "hard",
         stored_temp: "cold",
-        time: (60 * 7 + 6) * 1000
+        time: (60 * 7 + 6) * 1000,
+        minutes: 7,
+        seconds: 6,
     },
     {
         size: "S",
-        boiled_type: "solid",
+        boiled_type: "firm",
         stored_temp: "cold",
-        time: (60 * 9 + 7) * 1000
+        time: (60 * 9 + 7) * 1000,
+        minutes: 9,
+        seconds: 7,
     },
     {
         size: "S",
         boiled_type: "runny",
         stored_temp: "cold",
-        time: (60 * 2 + 22) * 1000
+        time: (60 * 2 + 22) * 1000,
+        minutes: 2,
+        seconds: 22,
     },
     {
         size: "S",
-        boiled_type: "soft boiled",
+        boiled_type: "soft",
         stored_temp: "cold",
-        time: (60 * 4 + 54) * 1000
+        time: (60 * 4 + 54) * 1000,
+        minutes: 4,
+        seconds: 54,
     },
     {
         size: "S",
-        boiled_type: "hard boiled",
+        boiled_type: "hard",
         stored_temp: "cold",
-        time: (60 * 5 + 49) * 1000
+        time: (60 * 5 + 49) * 1000,
+        minutes: 5,
+        seconds: 49,
     },
     {
         size: "S",
-        boiled_type: "solid",
+        boiled_type: "firm",
         stored_temp: "room",
-        time: (60 * 7 + 50) * 1000
+        time: (60 * 7 + 50) * 1000,
+        minutes: 7,
+        seconds: 50,
     },
     
 
@@ -67,49 +84,65 @@ const egg_combinations = [
         size: "M",
         boiled_type: "runny",
         stored_temp: "cold",
-        time: (60 * 3 + 58) * 1000
+        time: (60 * 3 + 58) * 1000,
+        minutes: 3,
+        seconds: 58,
     },
     {
         size: "M",
-        boiled_type: "soft boiled",
+        boiled_type: "soft",
         stored_temp: "cold",
-        time: (60 * 6 + 43) * 1000
+        time: (60 * 6 + 43) * 1000,
+        minutes: 6,
+        seconds: 43,
     },
     {
         size: "M",
-        boiled_type: "hard boiled",
+        boiled_type: "hard",
         stored_temp: "cold",
-        time: (60 * 7 + 43) * 1000
+        time: (60 * 7 + 43) * 1000,
+        minutes: 7,
+        seconds: 43,
     },
     {
         size: "M",
-        boiled_type: "solid",
+        boiled_type: "firm",
         stored_temp: "cold",
-        time: (60 * 9 + 56) * 1000
+        time: (60 * 9 + 56) * 1000,
+        minutes: 9,
+        seconds: 56,
     },
     {
         size: "M",
         boiled_type: "runny",
         stored_temp: "cold",
-        time: (60 * 2 + 34) * 1000
+        time: (60 * 2 + 34) * 1000,
+        minutes: 2,
+        seconds: 34,
     },
     {
         size: "M",
-        boiled_type: "soft boiled",
+        boiled_type: "soft",
         stored_temp: "cold",
-        time: (60 * 5 + 20) * 1000
+        time: (60 * 5 + 20) * 1000,
+        minutes: 5,
+        seconds: 20,
     },
     {
         size: "M",
-        boiled_type: "hard boiled",
+        boiled_type: "hard",
         stored_temp: "cold",
-        time: (60 * 6 + 20) * 1000
+        time: (60 * 6 + 20) * 1000,
+        minutes: 6,
+        seconds: 20,
     },
     {
         size: "M",
-        boiled_type: "solid",
+        boiled_type: "firm",
         stored_temp: "room",
-        time: (60 * 8 + 33) * 1000
+        time: (60 * 8 + 33) * 1000,
+        minutes: 8,
+        seconds: 33,
     },
 
 
@@ -120,103 +153,172 @@ const egg_combinations = [
         size: "L",
         boiled_type: "runny",
         stored_temp: "cold",
-        time: (60 * 4 + 24) * 1000
+        time: (60 * 4 + 24) * 1000,
+        minutes: 4,
+        seconds: 24,
     },
     {
         size: "L",
-        boiled_type: "soft boiled",
+        boiled_type: "soft",
         stored_temp: "cold",
-        time: (60 * 7 + 28) * 1000
+        time: (60 * 7 + 28) * 1000,
+        minutes: 7,
+        seconds: 28,
     },
     {
         size: "L",
-        boiled_type: "hard boiled",
+        boiled_type: "hard",
         stored_temp: "cold",
-        time: (60 * 8 + 35) * 1000
+        time: (60 * 8 + 35) * 1000,
+        minutes: 8,
+        seconds: 35,
     },
     {
         size: "L",
-        boiled_type: "solid",
+        boiled_type: "firm",
         stored_temp: "cold",
-        time: (60 * 11 + 3) * 1000
+        time: (60 * 11 + 3) * 1000,
+        minutes: 11,
+        seconds: 3,
     },
     {
         size: "L",
         boiled_type: "runny",
         stored_temp: "cold",
-        time: (60 * 2 + 51) * 1000
+        time: (60 * 2 + 51) * 1000,
+        minutes: 2,
+        seconds: 51,
     },
     {
         size: "L",
-        boiled_type: "soft boiled",
+        boiled_type: "soft",
         stored_temp: "cold",
-        time: (60 * 5 + 55) * 1000
+        time: (60 * 5 + 55) * 1000,
+        minutes: 5,
+        seconds: 55,
     },
     {
         size: "L",
-        boiled_type: "hard boiled",
+        boiled_type: "hard",
         stored_temp: "cold",
-        time: (60 * 7 + 2) * 1000
+        time: (60 * 7 + 2) * 1000,
+        minutes: 7,
+        seconds: 2,
     },
     {
         size: "L",
-        boiled_type: "solid",
+        boiled_type: "firm",
         stored_temp: "room",
-        time: (60 * 9 + 30) * 1000
+        time: (60 * 9 + 30) * 1000,
+        minutes: 9,
+        seconds: 30,
     },
+
 
     {
         size: "XL",
         boiled_type: "runny",
         stored_temp: "cold",
-        time: (60 * 4 + 49) * 1000
+        time: (60 * 4 + 49) * 1000,
+        minutes: 4,
+        seconds: 49,
     },
     {
         size: "XL",
-        boiled_type: "soft boiled",
+        boiled_type: "soft",
         stored_temp: "cold",
-        time: (60 * 8 + 11) * 1000
+        time: (60 * 8 + 11) * 1000,
+        minutes: 8,
+        seconds: 11,
     },
     {
         size: "XL",
-        boiled_type: "hard boiled",
+        boiled_type: "hard",
         stored_temp: "cold",
-        time: (60 * 9 + 24) * 1000
+        time: (60 * 9 + 24) * 1000,
+        minutes: 9,
+        seconds: 24,
     },
     {
         size: "XL",
-        boiled_type: "solid",
+        boiled_type: "firm",
         stored_temp: "cold",
-        time: (60 * 12 + 6) * 1000
+        time: (60 * 12 + 6) * 1000,
+        minutes: 12,
+        seconds: 6,
     },
     {
         size: "XL",
         boiled_type: "runny",
         stored_temp: "cold",
-        time: (60 * 3 + 7) * 1000
+        time: (60 * 3 + 7) * 1000,
+        minutes: 3,
+        seconds: 7,
     },
     {
         size: "XL",
-        boiled_type: "soft boiled",
+        boiled_type: "soft",
         stored_temp: "cold",
-        time: (60 * 6 + 29) * 1000
+        time: (60 * 6 + 29) * 1000,
+        minutes: 6,
+        seconds: 29,
     },
     {
         size: "XL",
-        boiled_type: "hard boiled",
+        boiled_type: "hard",
         stored_temp: "cold",
-        time: (60 * 7 + 42) * 1000
+        time: (60 * 7 + 42) * 1000,
+        minutes: 7,
+        seconds: 42,
     },
     {
         size: "XL",
-        boiled_type: "solid",
+        boiled_type: "firm",
         stored_temp: "room",
-        time: (60 * 10 + 24) * 1000
+        time: (60 * 10 + 24) * 1000,
+        minutes: 10,
+        seconds: 24,
     },
-]
+];
+
 const minutes_input = document.querySelector("#minutes");
 const seconds_input = document.querySelector("#seconds");
 const start_button = document.querySelector("#start_button");
+const egg_sizes = document.querySelectorAll(".egg_size");
+const slider = document.querySelector("#slider");
+
+egg_sizes.forEach(egg_size =>{
+    egg_size.addEventListener("click", (e)=>{
+        egg_sizes.forEach(egg =>{egg.classList.remove("selected")});
+        e.target.classList.add("selected");
+        find_selection();
+
+    })
+})
+
+slider.addEventListener("scrollend", (e)=>{
+    const egg_slides = Array.from(document.querySelector("#slider").children);
+    const window_middle = window.innerWidth / 2;
+    const window_size_percentage = window.innerWidth / 100;
+    const selection_area_start = window_size_percentage * 30;
+    const selection_area_end = window_size_percentage * 70;
+    egg_slides.forEach(egg => {
+        egg.classList.remove("selected")
+        const egg_x_pos = egg.getBoundingClientRect().right - (egg.getBoundingClientRect().width / 2);
+        if (egg_x_pos > selection_area_start && egg_x_pos < selection_area_end) {
+            egg.classList.add("selected");
+        }
+    });
+
+    find_selection();
+})
+
+function find_selection(egg) {
+    const size = document.querySelector(".egg_size.selected").id;
+    const boiled_type = document.querySelector("#slider .selected").id
+    console.log(boiled_type);
+    console.log(size);
+}
 
 add_event_listeners();
 
@@ -289,9 +391,9 @@ const timer = {
             timer.start_timer(minutes, seconds);
         }, 1000)
     },
-
-
 }
+
+
 
 function add_event_listeners(params) {
     minutes_input.addEventListener("focus", ()=>{
@@ -311,14 +413,3 @@ function add_event_listeners(params) {
         timer.start_timer(minutes, seconds);
     });
 }
-
-
-
-/*
-const test = document.querySelector("#slider");
-
-test.addEventListener("touchmove", (e)=>{
-    console.log(e.touches);
-
-}, {passive: false})
-*/
