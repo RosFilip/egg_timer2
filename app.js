@@ -311,3 +311,14 @@ function add_event_listeners(params) {
         timer.start_timer(minutes, seconds);
     });
 }
+
+
+
+/*
+const test = document.querySelector("#slider");
+
+test.addEventListener("touchmove", (e)=>{
+    console.log(e.touches);
+
+}, {passive: false})
+*/
