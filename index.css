@@ -43,9 +43,13 @@ input{
 
 #selection_container{
     display: flex;
-flex-direction: column;
-height: 70%;
-justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 70%;
+}
+#selection_container div{
+    width: 100%;
 }
 
 /* EGG SIZING */
@@ -142,6 +146,9 @@ justify-content: space-between;
     background-color: transparent;
     border: 1px solid #9D9D9D;
 }
+.temp_selector.selected{
+    border: 2px solid #ECA704;
+}
 .temp_selector:hover{
     border: 2px solid #ECA704;
 }
@@ -178,10 +185,11 @@ justify-content: space-between;
 #start_button{
     height: 100px;
     width: 100px;
-    border: 1px solid lightblue;
     margin-top: 50px;
-}
-#start_button::before{
-    content: "PRESS MEEE";
+    background-image: url(./media/start_timer.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
     cursor: pointer;
 }

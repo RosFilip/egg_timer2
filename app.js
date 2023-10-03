@@ -1,16 +1,3 @@
-//  addEventListener()=>{
-    // vilken storlek
-    // boiled type
-    // temp på ägget
-  
-    // loop med massa object, där varje objekt är en egg kombo
-    // for of, egg of egg_combinations
-    // egg.find(egg_obj => {
-    // 
-    // })
-  // 3}
-
-
 const egg_combinations = [
     {
         size: "S",
@@ -48,7 +35,7 @@ const egg_combinations = [
     {
         size: "S",
         boiled_type: "runny",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 2 + 22) * 1000,
         minutes: 2,
         seconds: 22,
@@ -56,7 +43,7 @@ const egg_combinations = [
     {
         size: "S",
         boiled_type: "soft",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 4 + 54) * 1000,
         minutes: 4,
         seconds: 54,
@@ -64,7 +51,7 @@ const egg_combinations = [
     {
         size: "S",
         boiled_type: "hard",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 5 + 49) * 1000,
         minutes: 5,
         seconds: 49,
@@ -115,7 +102,7 @@ const egg_combinations = [
     {
         size: "M",
         boiled_type: "runny",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 2 + 34) * 1000,
         minutes: 2,
         seconds: 34,
@@ -123,7 +110,7 @@ const egg_combinations = [
     {
         size: "M",
         boiled_type: "soft",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 5 + 20) * 1000,
         minutes: 5,
         seconds: 20,
@@ -131,7 +118,7 @@ const egg_combinations = [
     {
         size: "M",
         boiled_type: "hard",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 6 + 20) * 1000,
         minutes: 6,
         seconds: 20,
@@ -184,7 +171,7 @@ const egg_combinations = [
     {
         size: "L",
         boiled_type: "runny",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 2 + 51) * 1000,
         minutes: 2,
         seconds: 51,
@@ -192,7 +179,7 @@ const egg_combinations = [
     {
         size: "L",
         boiled_type: "soft",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 5 + 55) * 1000,
         minutes: 5,
         seconds: 55,
@@ -200,7 +187,7 @@ const egg_combinations = [
     {
         size: "L",
         boiled_type: "hard",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 7 + 2) * 1000,
         minutes: 7,
         seconds: 2,
@@ -250,7 +237,7 @@ const egg_combinations = [
     {
         size: "XL",
         boiled_type: "runny",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 3 + 7) * 1000,
         minutes: 3,
         seconds: 7,
@@ -258,7 +245,7 @@ const egg_combinations = [
     {
         size: "XL",
         boiled_type: "soft",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 6 + 29) * 1000,
         minutes: 6,
         seconds: 29,
@@ -266,7 +253,7 @@ const egg_combinations = [
     {
         size: "XL",
         boiled_type: "hard",
-        stored_temp: "cold",
+        stored_temp: "room",
         time: (60 * 7 + 42) * 1000,
         minutes: 7,
         seconds: 42,
@@ -280,18 +267,51 @@ const egg_combinations = [
         seconds: 24,
     },
 ];
+start_app();
+function start_app() {
+    const saved_settings = JSON.parse(localStorage.getItem("saved_settings"));
+    if (saved_settings) {
+        const {size, boiled_type, stored_temp} = saved_settings;
+        document.querySelector(`.egg_size#${size}`).classList.add("selected");
+        document.querySelector(`#slider #${boiled_type}`).classList.add("selected");
+        document.querySelector(`#slider #${boiled_type}`).scrollIntoView();
+        document.querySelector(`#temp_selector_container #${stored_temp}`).classList.add("selected");
+    } else {
+        document.querySelector(`.egg_size#M`).classList.add("selected");
+        document.querySelector(`#slider #soft`).classList.add("selected");
+        document.querySelector(`#slider #soft`).scrollIntoView();
+        document.querySelector(`#temp_selector_container #cold`).classList.add("selected");
+    }
 
-const minutes_input = document.querySelector("#minutes");
-const seconds_input = document.querySelector("#seconds");
-const start_button = document.querySelector("#start_button");
-const egg_sizes = document.querySelectorAll(".egg_size");
-const slider = document.querySelector("#slider");
+    return {
+        minutes_input:  document.querySelector("#minutes"),
+        seconds_input:  document.querySelector("#seconds"),
+        start_button:   document.querySelector("#start_button"),
+        egg_sizes:      document.querySelectorAll(".egg_size"),
+        slider:         document.querySelector("#slider"),
+        temp_selectors:  document.querySelectorAll("#temp_selector_container .temp_selector"),
+    }
+}
+
+const {minutes_input, seconds_input, start_button, egg_sizes, slider, temp_selectors} = start_app();
+
+
+// Selection functions
+temp_selectors.forEach(temp_selector => {
+    temp_selector.addEventListener("click", (e)=>{
+        temp_selectors.forEach(selector =>{
+            selector.classList.remove("selected")
+        })
+        e.target.classList.add("selected");
+        set_egg_settings()
+    })
+});
 
 egg_sizes.forEach(egg_size =>{
     egg_size.addEventListener("click", (e)=>{
         egg_sizes.forEach(egg =>{egg.classList.remove("selected")});
         e.target.classList.add("selected");
-        find_selection();
+        set_egg_settings();
 
     })
 })
@@ -310,21 +330,26 @@ slider.addEventListener("scrollend", (e)=>{
         }
     });
 
-    find_selection();
+    set_egg_settings();
 })
 
-function find_selection(egg) {
+function set_egg_settings(egg) {
     const size = document.querySelector(".egg_size.selected").id;
-    const boiled_type = document.querySelector("#slider .selected").id
-    console.log(boiled_type);
-    console.log(size);
+    const boiled_type = document.querySelector("#slider .selected").id;
+    const temp = document.querySelector("#temp_selector_container .selected").id;
+
+    const egg_setting = egg_combinations.find(x => 
+        x.size === size && 
+        x.boiled_type === boiled_type &&
+        x.stored_temp === temp);
+
+        timer.set_minutes(egg_setting.minutes);
+        timer.set_seconds(egg_setting.seconds)
+        localStorage.setItem("saved_settings", JSON.stringify(egg_setting));
 }
-
-add_event_listeners();
-
+// timer
 const timer = {
     set_minutes: (minutes) => {
-        console.log(minutes);
         if (minutes < 10) {
             minutes = `0${minutes}`
         }
@@ -392,9 +417,7 @@ const timer = {
         }, 1000)
     },
 }
-
-
-
+// add events
 function add_event_listeners(params) {
     minutes_input.addEventListener("focus", ()=>{
         const start_value = parseInt(minutes_input.value);
@@ -413,3 +436,5 @@ function add_event_listeners(params) {
         timer.start_timer(minutes, seconds);
     });
 }
+
+add_event_listeners();
