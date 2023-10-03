@@ -11,22 +11,27 @@
     padding: 0;
 }
 
-header {
-    height: 100%;
-    background-image: url("./media/wave-haikei.svg");
+.backImg {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+header {
+    height: 100%;
+    background-image: url("./media/wave-haikei.svg");
 }
 
 #title {
     font-size: 15vw;
     font-family: "baloo-bold";
     text-align: center;
+    margin-top: 2vw;
 }
 
 .potContainer {
     padding: 20px;
+    display: block;
 }
 
 #potBottom {
@@ -59,10 +64,7 @@ header {
         top: 58px;
     }
 
-    & .tenor-gif-embed {
-        width: 20vw;
-        position: absolute;
-    }
+
 }
 
 #potLid {
@@ -98,10 +100,20 @@ header {
     aspect-ratio: 960/300;
     width: 100%;
     background-image: url("./media/layered-waves-haikei.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     z-index: -1;
+}
+
+.finishedEgg {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./media/egg.png");
+    height: 80vw;
+    background-size: contain;
+
+    & .tenor-gif-embed {
+        width: 40vw;
+    }
 }
 
 .timerContainer {
