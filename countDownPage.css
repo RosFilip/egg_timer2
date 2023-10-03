@@ -5,19 +5,33 @@
 }
 
 #main_container {
-    /* position: relative; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    padding: 0;
+}
+
+header {
+    height: 100%;
+    background-image: url("./media/wave-haikei.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #title {
-    position: absolute;
-    top: 20px;
     font-size: 15vw;
     font-family: "baloo-bold";
+    text-align: center;
+}
+
+.potContainer {
+    padding: 20px;
 }
 
 #potBottom {
     height: 40vw;
-    background-color: #5b5b5b;
+    background-color: var(--color-lightBrown);
     border-radius: 0 0 90px 90px;
     border: var(--potBorder);
     position: relative;
@@ -26,14 +40,12 @@
     &::before {
         content: "";
         position: absolute;
-        top: 2px;
-        right: 0;
+        right: 2px;
         top: 8px;
-        right: 0;
         bottom: 9px;
         left: 15px;
-        background-color: #afafaf;
-        border-radius: 5px 0 65px 90px;
+        background-color: var(--color-lightYellow);
+        border-radius: 5px 0 80px 90px;
     }
 
     &::after {
@@ -41,7 +53,7 @@
         position: absolute;
         width: 4vw;
         height: 13vw;
-        background-color: rgb(216, 216, 216);
+        background-color: var(--color-lightBrown);
         border-radius: 20px;
         right: 44px;
         top: 58px;
@@ -56,7 +68,7 @@
 #potLid {
     position: relative;
     height: 9vw;
-    background-color: var(--color-goldish);
+    background-color: var(--color-lightBrown);
     border-radius: 20px 20px 0 0;
     border: var(--potBorder);
     margin: 5vh 0;
@@ -74,9 +86,43 @@
         border-top: var(--potBorder);
         border-left: var(--potBorder);
         border-right: var(--potBorder);
-        background-color: var(--color-goldish);
+        background-color: var(--color-lightBrown);
         bottom: 97%;
 
+    }
+}
+
+.wave {
+    position: absolute;
+    top: -34px;
+    aspect-ratio: 960/300;
+    width: 100%;
+    background-image: url("./media/layered-waves-haikei.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+}
+
+.timerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vw;
+
+    & #timer {
+        font-size: 15vw;
+    }
+
+    & #stopBtn {
+        font-size: 8vw;
+        padding: 10px;
+        background-color: white;
+        color: var(--color-goldish);
+        border-radius: 20px;
+        border: 2px solid var(--color-goldish);
+        cursor: pointer;
     }
 }
 
@@ -91,7 +137,7 @@
     height: 10vw;
     width: 10vw;
     border-radius: 50%;
-    background-color: rgb(42, 165, 214);
+    background-color: #2aa5d6;
     /* animation: floatBubble 8s linear infinite,
         sideWays 1s ease-in-out infinite alternate; */
 
@@ -100,7 +146,7 @@
         position: absolute;
         border-radius: 50%;
         inset: 2px;
-        background-color: skyblue;
+        background-color: #87ceeb;
         box-shadow: 0 0 4px 0px white;
     }
 
