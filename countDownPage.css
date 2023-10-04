@@ -1,0 +1,257 @@
+:root {
+    --positive-angle: 2deg;
+    --negative-angle: -2deg;
+    --potBorder: 4px solid black;
+}
+
+#main_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    padding: 0;
+}
+
+.backImg {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+header {
+    height: 100%;
+    background-image: url("./media/wave-haikei.svg");
+}
+
+#title {
+    font-size: 15vw;
+    font-family: "baloo-bold";
+    text-align: center;
+    margin-top: 2vw;
+}
+
+.potContainer {
+    padding: 20px;
+    display: block;
+}
+
+#potBottom {
+    height: 40vw;
+    background-color: var(--color-lightBrown);
+    border-radius: 0 0 90px 90px;
+    border: var(--potBorder);
+    position: relative;
+
+
+    &::before {
+        content: "";
+        position: absolute;
+        right: 2px;
+        top: 8px;
+        bottom: 9px;
+        left: 15px;
+        background-color: var(--color-lightYellow);
+        border-radius: 5px 0 80px 90px;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 4vw;
+        height: 13vw;
+        background-color: var(--color-lightBrown);
+        border-radius: 20px;
+        right: 44px;
+        top: 58px;
+    }
+
+
+}
+
+#potLid {
+    position: relative;
+    height: 9vw;
+    background-color: var(--color-lightBrown);
+    border-radius: 20px 20px 0 0;
+    border: var(--potBorder);
+    margin: 5vh 0;
+    display: flex;
+    justify-content: center;
+
+    /* animation: shakeLid .5s linear infinite; */
+
+    &::before {
+        content: "";
+        position: absolute;
+        height: 4vw;
+        width: 15vw;
+        border-radius: 20px 20px 0 0;
+        border-top: var(--potBorder);
+        border-left: var(--potBorder);
+        border-right: var(--potBorder);
+        background-color: var(--color-lightBrown);
+        bottom: 97%;
+
+    }
+}
+
+.wave {
+    position: absolute;
+    top: -34px;
+    aspect-ratio: 960/300;
+    width: 100%;
+    background-image: url("./media/layered-waves-haikei.svg");
+    z-index: -1;
+}
+
+.finishedEgg {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./media/egg.png");
+    height: 80vw;
+    background-size: contain;
+
+    & .tenor-gif-embed {
+        width: 40vw;
+    }
+}
+
+.timerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vw;
+
+    & #timer {
+        font-size: 15vw;
+    }
+
+    & #stopBtn {
+        font-size: 8vw;
+        padding: 10px;
+        background-color: white;
+        color: var(--color-goldish);
+        border-radius: 20px;
+        border: 2px solid var(--color-goldish);
+        cursor: pointer;
+    }
+}
+
+.bubbleContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.bubble {
+    position: absolute;
+    z-index: -1;
+    height: 10vw;
+    width: 10vw;
+    border-radius: 50%;
+    background-color: #2aa5d6;
+    /* animation: floatBubble 8s linear infinite,
+        sideWays 1s ease-in-out infinite alternate; */
+
+    &::before {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        inset: 2px;
+        background-color: #87ceeb;
+        box-shadow: 0 0 4px 0px white;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        background-color: white;
+        box-shadow: 0px 0px 2px 0px #ffffffad;
+        height: 5px;
+        width: 9px;
+        border-radius: 40%;
+        right: 6px;
+        top: 9px;
+        transform: rotate(30deg);
+    }
+}
+
+.bubble:nth-child(1) {
+    right: 5%;
+    scale: .5;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(2) {
+    right: 20%;
+    scale: .8;
+    animation-delay: 1s;
+
+}
+
+.bubble:nth-child(3) {
+    right: 40%;
+    animation-delay: 1.7s;
+}
+
+.bubble:nth-child(4) {
+    right: 55%;
+    scale: .9;
+    animation-delay: 4s;
+}
+
+.bubble:nth-child(5) {
+    right: 70%;
+    scale: .7;
+
+}
+
+.bubble:nth-child(6) {
+    right: 85%;
+    animation-delay: 3s;
+}
+
+.bubble:nth-child(7) {
+    right: 15%;
+    animation-delay: 5s;
+}
+
+.bubble:nth-child(8) {
+    right: 30%;
+    scale: .6;
+    animation-delay: 4.5s;
+}
+
+@keyframes floatBubble {
+    0% {
+        top: 0px;
+    }
+
+    100% {
+        top: -250px;
+    }
+}
+
+@keyframes sideWays {
+    0% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(8px);
+    }
+}
+
+@keyframes shakeLid {
+    0% {
+        transform: rotate(var(--negative-angle));
+    }
+
+    50% {
+        transform: rotate(var(--positive-angle));
+    }
+
+    100% {
+        transform: rotate(var(--negative-angle));
+    }
+}
