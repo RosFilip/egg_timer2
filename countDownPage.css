@@ -39,7 +39,7 @@ header {
 
 .potContainer {
     padding: 20px;
-    display: block;
+    display: none;
 }
 
 #potBottom {
@@ -113,7 +113,7 @@ header {
 }
 
 .finishedEgg {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     background-image: url("./media/egg.png");

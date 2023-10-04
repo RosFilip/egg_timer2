@@ -284,17 +284,17 @@ function start_app() {
     }
 
     return {
-        minutes_input:  document.querySelector("#minutes"),
-        seconds_input:  document.querySelector("#seconds"),
-        start_button:   document.querySelector("#start_button"),
-        egg_sizes:      document.querySelectorAll(".egg_size"),
-        slider:         document.querySelector("#slider"),
-        temp_selectors:  document.querySelectorAll("#temp_selector_container .temp_selector"),
+        minutes_input: document.querySelector("#minutes"),
+        seconds_input: document.querySelector("#seconds"),
+        start_button: document.querySelector("#start_button"),
+        egg_sizes: document.querySelectorAll(".egg_size"),
+        slider: document.querySelector("#slider"),
+        temp_selectors: document.querySelectorAll("#temp_selector_container .temp_selector"),
         guide_button: document.querySelector("#guide_button"),
     }
 }
 
-const {minutes_input, seconds_input, start_button, egg_sizes, slider, temp_selectors, guide_button} = start_app();
+const { minutes_input, seconds_input, start_button, egg_sizes, slider, temp_selectors, guide_button } = start_app();
 
 
 // Selection functions
@@ -424,21 +424,34 @@ function add_event_listeners(params) {
         const start_value = parseInt(minutes_input.value);
         timer.minutes_input_check(start_value);
     })
-    seconds_input.addEventListener("focus", ()=>{
+    seconds_input.addEventListener("focus", () => {
         const start_value = parseInt(seconds_input.value);
         timer.seconds_input_check(start_value);
     })
 
     start_button.addEventListener("click", (e) => {
-        console.log("start timer");
-        document.querySelector("#selection_container").style.left = "100vw";
-        document.querySelector(".countdown_container").style.right = "0vw";
+        const selectionContainer = document.querySelector("#selection_container");
+        const countdownContainer = document.querySelector(".countdown_container");
+        const timerBtn = document.querySelector("#start_button p");
+
+        if (timerBtn.textContent === "START") {
+            selectionContainer.style.left = "100vw";
+            countdownContainer.style.right = "0vw";
+            timerBtn.textContent = "STOP";
+            document.querySelector("#start_button .timer_icon").classList.add("stop_icon");
+        } else {
+            selectionContainer.style.left = "0vw";
+            countdownContainer.style.right = "100vw";
+            timerBtn.textContent = "START";
+            document.querySelector("#start_button .timer_icon").classList.remove("stop_icon");
+        }
         const minutes = parseInt(minutes_input.value);
         const seconds = parseInt(seconds_input.value);
+        console.log("start timer");
         timer.start_timer(minutes, seconds);
     });
 
-    guide_button.addEventListener("click", ()=>{
+    guide_button.addEventListener("click", () => {
         const guide_dom = document.createElement("div");
         guide_dom.id = "guide_container";
         guide_dom.innerHTML = `
@@ -476,7 +489,7 @@ function add_event_listeners(params) {
         </div>
         `
 
-        guide_dom.querySelector("#close_button").addEventListener("click", ()=>{
+        guide_dom.querySelector("#close_button").addEventListener("click", () => {
             guide_dom.remove();
         })
         document.body.append(guide_dom);

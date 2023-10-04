@@ -55,8 +55,9 @@ body {
 input {
     background-color: transparent;
 }
+
 /* GUIDE BUTTON */
-#guide_button{
+#guide_button {
     position: absolute;
     height: 25px;
     width: 25px;
@@ -69,11 +70,11 @@ input {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    
+
     cursor: pointer;
 }
 
-#guide_container{
+#guide_container {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -83,7 +84,7 @@ input {
     border: 20px;
 }
 
-#guide{
+#guide {
     display: block;
     position: relative;
     height: 90%;
@@ -93,14 +94,15 @@ input {
     padding: 3vw;
 }
 
-#guide  div *{
+#guide div * {
     color: black;
 }
-#guide  div .text{
+
+#guide div .text {
     margin-left: 8vw;
 }
 
-#guide > #close_button{
+#guide>#close_button {
     position: absolute;
     height: 35px;
     width: 35px;
@@ -302,30 +304,50 @@ input {
     font-size: 56px;
 }
 
-#start_button {
+#timer_buttons {
+    display: flex;
+    gap: 15vw;
+}
+
+.timer_btn {
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 2vw;
+    width: 30vw;
     margin-top: 40px;
     background-color: var(--color-darkBlue);
     border: 2px solid var(--color-goldish);
-    padding: 10px 20px;
+    padding: 8px 15px;
     border-radius: 20px;
     cursor: pointer;
 
     & p {
-        font-size: 9vw;
+        font-size: 5vw;
     }
 
-    & .timer_icon {
-        height: 9vw;
-        width: 9vw;
-        background-image: url("./media/timer_white_24dp.svg");
+    & div {
+        height: 5vw;
+        width: 5vw;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
     }
 
+
     &:hover {
         background-color: var(--color-goldish);
     }
+}
+
+.timer_icon {
+    background-image: url("./media/timer_white_24dp.svg");
+}
+
+.pause_icon {
+    background-image: url("./media/pause_white_24dp.svg");
+}
+
+.stop_icon {
+    background-image: url("media/play_circle_white_24dp.svg");
 }
