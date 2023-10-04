@@ -1,71 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Eggxellent</title>
     <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./countDownPage.css">
 </head>
+
 <body>
     <div id="main_container">
-        <div id="selection_container">
-            <div id="egg_size_selector_container">
-                <div id="egg_S_container" class="egg_size_container">
-                    <div class="egg_size " id="S"></div>
-                    <p>S</p>
-                    <p>53 <</p>
+        <div class="content_container">
+            <div id="selection_container">
+                <div id="egg_size_selector_container">
+                    <div id="egg_S_container" class="egg_size_container">
+                        <div class="egg_size " id="S"></div>
+                        <p>S</p>
+                        <p>53 << /p>
+                    </div>
+                    <div id="egg_M_container" class="egg_size_container">
+                        <div class="egg_size" id="M"></div>
+                        <p>M</p>
+                        <p>53 - 62</p>
+                    </div>
+                    <div id="egg_L_container" class="egg_size_container">
+                        <div class="egg_size " id="L"></div>
+                        <p>L</p>
+                        <p>63 - 72</p>
+                    </div>
+                    <div id="egg_XL_container" class="egg_size_container">
+                        <div class="egg_size " id="XL"></div>
+                        <p>XL</p>
+                        <p>> 72</p>
+                    </div>
                 </div>
-                <div id="egg_M_container" class="egg_size_container">
-                    <div class="egg_size" id="M"></div>
-                    <p>M</p>
-                    <p>53 - 62</p>
+
+                <div id="egg_boild_type_container">
+                    <div id="slider">
+                        <div class="egg_container">
+                        </div>
+                        <div class="egg_container" id="runny">
+                            <div class="egg_image"></div>
+                            <p>runny</p>
+                        </div>
+                        <div class="egg_container" id="soft">
+                            <div class="egg_image"></div>
+                            <p>soft boiled</p>
+                        </div>
+                        <div class="egg_container" id="hard">
+                            <div class="egg_image"></div>
+                            <p>hard boiled</p>
+                        </div>
+                        <div class="egg_container" id="firm">
+                            <div class="egg_image"></div>
+                            <p>firm</p>
+                        </div>
+                        <div class="egg_container">
+                        </div>
+                    </div>
                 </div>
-                <div id="egg_L_container" class="egg_size_container">
-                    <div class="egg_size " id="L"></div>
-                    <p>L</p>
-                    <p>63 - 72</p>
-                </div>
-                <div id="egg_XL_container" class="egg_size_container">
-                    <div class="egg_size " id="XL"></div>
-                    <p>XL</p>
-                    <p>> 72</p>
+
+                <div id="temp_selector_container">
+                    <button class="temp_selector" id="cold">
+                        stored cold
+                    </button>
+                    <button class="temp_selector" id="room">
+                        stored room
+                    </button>
                 </div>
             </div>
-    
-            <div id="egg_boild_type_container">
-                <div id="slider">
-                    <div class="egg_container">
-                    </div>
-                    <div class="egg_container" id="runny">
-                        <div class="egg_image"></div>
-                        <p>runny</p>
-                    </div>
-                    <div class="egg_container" id="soft">
-                        <div class="egg_image"></div>
-                        <p>soft boiled</p>
-                    </div>
-                    <div class="egg_container" id="hard">
-                        <div class="egg_image"></div>
-                        <p>hard boiled</p>
-                    </div>
-                    <div class="egg_container" id="firm">
-                        <div class="egg_image"></div>
-                        <p>firm</p>
-                    </div>
-                    <div class="egg_container">
+
+            <div class="countdown_container">
+                <header class="backImg">
+                    <h1 id="title">Lets cook</h1>
+                </header>
+                <div class="potContainer">
+                    <div id="potLid"></div>
+                    <div id="potBottom">
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="wave backImg"></div>
                     </div>
                 </div>
+                <figure class="finishedEgg backImg">
+                    <div class="tenor-gif-embed" data-postid="25163624" data-share-method="host" data-aspect-ratio="1">
+                        <a href="https://tenor.com/view/egg-dance-egg-kumo-egg-where-kumo-where-hug-gif-25163624">Egg
+                            Dance
+                            Egg
+                            Sticker</a>from <a href="https://tenor.com/search/egg+dance-stickers">Egg Dance Stickers</a>
+                    </div>
+                </figure>
             </div>
-    
-            <div id="temp_selector_container">
-                <button class="temp_selector" id="cold">
-                    stored cold
-                </button>
-                <button class="temp_selector" id="room">
-                    stored room
-                </button>
-            </div>
+
         </div>
+
 
         <div id="timer_container">
             <div id="timer">
@@ -74,12 +109,17 @@
                 <input id="seconds" pattern="0-9" maxlength="2" max="" value="45"></input>
             </div>
             <div id="timer_buttons">
-                <div id="start_button"></div>
+                <div id="start_button">
+                    <p>Start</p>
+                    <div class="timer_icon"></div>
+                </div>
             </div>
         </div>
 
     </div>
 
     <script src="./app.js"></script>
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 </body>
+
 </html>

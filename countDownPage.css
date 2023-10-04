@@ -4,11 +4,19 @@
     --potBorder: 4px solid black;
 }
 
-#main_container {
+.countdown_container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
-    padding: 0;
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    right: 100vw;
+    transition: right 1s;
+}
+
+.slide_conent_right {
+    right: 0vw;
 }
 
 .backImg {
@@ -77,7 +85,8 @@ header {
     display: flex;
     justify-content: center;
 
-    /* animation: shakeLid .5s linear infinite; */
+    /* animation: shakeLid linear infinite;
+    animation-duration: 1s; */
 
     &::before {
         content: "";
@@ -150,8 +159,9 @@ header {
     width: 10vw;
     border-radius: 50%;
     background-color: #2aa5d6;
-    /* animation: floatBubble 8s linear infinite,
-        sideWays 1s ease-in-out infinite alternate; */
+    /* animation: floatBubble linear infinite,
+        sideWays ease-in-out infinite alternate;
+    animation-duration: 8s, 1s; */
 
     &::before {
         content: "";

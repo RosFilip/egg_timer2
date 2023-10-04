@@ -64,7 +64,7 @@ const egg_combinations = [
         minutes: 7,
         seconds: 50,
     },
-    
+
 
 
     {
@@ -271,7 +271,7 @@ start_app();
 function start_app() {
     const saved_settings = JSON.parse(localStorage.getItem("saved_settings"));
     if (saved_settings) {
-        const {size, boiled_type, stored_temp} = saved_settings;
+        const { size, boiled_type, stored_temp } = saved_settings;
         document.querySelector(`.egg_size#${size}`).classList.add("selected");
         document.querySelector(`#slider #${boiled_type}`).classList.add("selected");
         document.querySelector(`#slider #${boiled_type}`).scrollIntoView();
@@ -284,22 +284,22 @@ function start_app() {
     }
 
     return {
-        minutes_input:  document.querySelector("#minutes"),
-        seconds_input:  document.querySelector("#seconds"),
-        start_button:   document.querySelector("#start_button"),
-        egg_sizes:      document.querySelectorAll(".egg_size"),
-        slider:         document.querySelector("#slider"),
-        temp_selectors:  document.querySelectorAll("#temp_selector_container .temp_selector"),
+        minutes_input: document.querySelector("#minutes"),
+        seconds_input: document.querySelector("#seconds"),
+        start_button: document.querySelector("#start_button"),
+        egg_sizes: document.querySelectorAll(".egg_size"),
+        slider: document.querySelector("#slider"),
+        temp_selectors: document.querySelectorAll("#temp_selector_container .temp_selector"),
     }
 }
 
-const {minutes_input, seconds_input, start_button, egg_sizes, slider, temp_selectors} = start_app();
+const { minutes_input, seconds_input, start_button, egg_sizes, slider, temp_selectors } = start_app();
 
 
 // Selection functions
 temp_selectors.forEach(temp_selector => {
-    temp_selector.addEventListener("click", (e)=>{
-        temp_selectors.forEach(selector =>{
+    temp_selector.addEventListener("click", (e) => {
+        temp_selectors.forEach(selector => {
             selector.classList.remove("selected")
         })
         e.target.classList.add("selected");
@@ -307,16 +307,16 @@ temp_selectors.forEach(temp_selector => {
     })
 });
 
-egg_sizes.forEach(egg_size =>{
-    egg_size.addEventListener("click", (e)=>{
-        egg_sizes.forEach(egg =>{egg.classList.remove("selected")});
+egg_sizes.forEach(egg_size => {
+    egg_size.addEventListener("click", (e) => {
+        egg_sizes.forEach(egg => { egg.classList.remove("selected") });
         e.target.classList.add("selected");
         set_egg_settings();
 
     })
 })
 
-slider.addEventListener("scrollend", (e)=>{
+slider.addEventListener("scrollend", (e) => {
     const egg_slides = Array.from(document.querySelector("#slider").children);
     const window_middle = window.innerWidth / 2;
     const window_size_percentage = window.innerWidth / 100;
@@ -338,14 +338,14 @@ function set_egg_settings(egg) {
     const boiled_type = document.querySelector("#slider .selected").id;
     const temp = document.querySelector("#temp_selector_container .selected").id;
 
-    const egg_setting = egg_combinations.find(x => 
-        x.size === size && 
+    const egg_setting = egg_combinations.find(x =>
+        x.size === size &&
         x.boiled_type === boiled_type &&
         x.stored_temp === temp);
 
-        timer.set_minutes(egg_setting.minutes);
-        timer.set_seconds(egg_setting.seconds)
-        localStorage.setItem("saved_settings", JSON.stringify(egg_setting));
+    timer.set_minutes(egg_setting.minutes);
+    timer.set_seconds(egg_setting.seconds)
+    localStorage.setItem("saved_settings", JSON.stringify(egg_setting));
 }
 // timer
 const timer = {
@@ -356,45 +356,45 @@ const timer = {
         minutes_input.value = minutes;
     },
     set_seconds: (seconds) => {
-            if (seconds < 10) {
-                seconds = `0${seconds}`
-            }
+        if (seconds < 10) {
+            seconds = `0${seconds}`
+        }
         seconds_input.value = seconds;
     },
 
-    minutes_input_check: (start_value)=> {
+    minutes_input_check: (start_value) => {
         let input;
-        minutes_input.addEventListener("keyup", (e)=>{  
+        minutes_input.addEventListener("keyup", (e) => {
             input = parseInt(minutes_input.value);
         });
         minutes_input.addEventListener("focusout", check)
         function check() {
-            if (input < 10 && input > 0 && input) {  minutes_input.value = `0${input}`; }
-            if (input === undefined || isNaN(input) || input > 59 ) {
+            if (input < 10 && input > 0 && input) { minutes_input.value = `0${input}`; }
+            if (input === undefined || isNaN(input) || input > 59) {
                 console.log("input not allowed");
                 timer.set_minutes(start_value);
                 minutes_input.removeEventListener("focusout", check);
-                return 
+                return
             }
-            
+
         }
     },
-    seconds_input_check: (start_value)=> {
+    seconds_input_check: (start_value) => {
         let input;
-        seconds_input.addEventListener("keyup", (e)=>{  
+        seconds_input.addEventListener("keyup", (e) => {
             input = parseInt(seconds_input.value);
         });
         seconds_input.addEventListener("focusout", check)
         console.log("test");
         function check() {
-            if (input < 10 && input > 0 && input) {  seconds_input.value = `0${input}`; }
-            if (input === undefined || isNaN(input) || input > 59 ) {
+            if (input < 10 && input > 0 && input) { seconds_input.value = `0${input}`; }
+            if (input === undefined || isNaN(input) || input > 59) {
                 console.log("input not allowed");
                 timer.set_seconds(start_value);
                 seconds_input.removeEventListener("focusout", check);
-                return 
+                return
             }
-            
+
         }
 
     },
@@ -404,7 +404,7 @@ const timer = {
             console.log("finished");
             return
         }
-        setTimeout(()=>{
+        setTimeout(() => {
             seconds -= 1
             if (seconds === 0 && minutes > 0) {
                 minutes -= 1;
@@ -419,18 +419,20 @@ const timer = {
 }
 // add events
 function add_event_listeners(params) {
-    minutes_input.addEventListener("focus", ()=>{
+    minutes_input.addEventListener("focus", () => {
         const start_value = parseInt(minutes_input.value);
         timer.minutes_input_check(start_value);
     })
-    seconds_input.addEventListener("focus", ()=>{
+    seconds_input.addEventListener("focus", () => {
         console.log("test");
         const start_value = parseInt(seconds_input.value);
         timer.seconds_input_check(start_value);
     })
 
-    start_button.addEventListener("click", (e)=>{
+    start_button.addEventListener("click", (e) => {
         console.log("start timer");
+        document.querySelector("#selection_container").style.left = "100vw";
+        document.querySelector(".countdown_container").style.right = "0vw";
         const minutes = parseInt(minutes_input.value);
         const seconds = parseInt(seconds_input.value);
         timer.start_timer(minutes, seconds);
