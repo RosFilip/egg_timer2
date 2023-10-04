@@ -59,8 +59,8 @@ input {
 /* GUIDE BUTTON */
 #guide_button {
     position: absolute;
-    height: 25px;
-    width: 25px;
+    height: 7vw;
+    width: 7vw;
     top: 5px;
     right: 5px;
 
@@ -161,6 +161,7 @@ input {
     display: flex;
     justify-content: space-between;
     height: 25%;
+    padding-top: 35px;
 }
 
 .egg_size_container {
@@ -178,7 +179,7 @@ input {
     width: 80px;
     /* for testing purposes */
 
-
+    margin-bottom: 5px;
     background-image: url(./media/egg.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -245,8 +246,23 @@ input {
 
 .egg_container.selected>.egg_image {
     height: 90%;
-    transition: ease-in-out;
-    transition: 1s;
+    transition: .5s cubic-bezier(.46, .03, .52, .96);
+}
+
+#runny div {
+    background-image: url("media/runny.svg");
+}
+
+#soft div {
+    background-image: url("media/soft.svg");
+}
+
+#hard div {
+    background-image: url("media/hard.svg");
+}
+
+#firm div {
+    background-image: url("media/firm.svg");
 }
 
 /* TEMP SELECTOR*/
@@ -261,6 +277,7 @@ input {
     border-radius: 15px;
     background-color: transparent;
     border: 1px solid #9D9D9D;
+    text-transform: uppercase;
 }
 
 .temp_selector.selected {
