@@ -419,6 +419,10 @@ const timer = {
         }, 1000)
     },
     alarm: new Audio('/media/alarm.mp3'),
+    timer_start: {
+        minutes: 0,
+        seconds: 0,
+    }
 }
 // add events
 function add_event_listeners(params) {
