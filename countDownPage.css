@@ -119,6 +119,18 @@ header {
     background-image: url("./media/egg.png");
     height: 80vw;
     background-size: contain;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 70px;
+        right: 105px;
+        left: 105px;
+        bottom: 70px;
+        background-color: #ffffff00;
+        z-index: 2;
+    }
 
     & .tenor-gif-embed {
         width: 40vw;
@@ -161,7 +173,7 @@ header {
     background-color: #2aa5d6;
     animation: floatBubble linear infinite,
         sideWays ease-in-out infinite alternate;
-    animation-duration: 8s, 1s;
+    animation-duration: 5s, 1s;
 
     &::before {
         content: "";

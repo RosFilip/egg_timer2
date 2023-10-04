@@ -407,6 +407,8 @@ const timer = {
             console.log("finished");
             document.querySelector(".potContainer").style.display = "none";
             document.querySelector(".finishedEgg").style.display = "flex";
+            document.querySelector("#title").textContent = "Eggxellent";
+
             return
         }
         timeoutID = setTimeout(() => {
@@ -464,6 +466,7 @@ function add_event_listeners(params) {
             document.querySelector(".potContainer").style.display = "block";
             document.querySelector(".finishedEgg").style.display = "none";
             document.querySelector("#pause_button").style.display = "none";
+            document.querySelector("#title").textContent = "Eggxellent";
 
             clearTimeout(timeoutID);
             timer.set_minutes(timer.startValues.minutes);
