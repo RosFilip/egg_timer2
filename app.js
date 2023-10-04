@@ -286,9 +286,11 @@ function start_app() {
     }
 
     return {
+        timer_dom: document.querySelector("#timer"),
         minutes_input: document.querySelector("#minutes"),
         seconds_input: document.querySelector("#seconds"),
         start_button: document.querySelector("#start_button"),
+        pause_button: document.querySelector("#pause_button"),
         egg_sizes: document.querySelectorAll(".egg_size"),
         slider: document.querySelector("#slider"),
         temp_selectors: document.querySelectorAll("#temp_selector_container .temp_selector"),
@@ -296,7 +298,7 @@ function start_app() {
     }
 }
 
-const { minutes_input, seconds_input, start_button, egg_sizes, slider, temp_selectors, guide_button } = start_app();
+const { timer_dom, minutes_input, seconds_input, start_button, pause_button, egg_sizes, slider, temp_selectors, guide_button } = start_app();
 
 
 // Selection functions
@@ -372,9 +374,9 @@ const timer = {
         });
         minutes_input.addEventListener("focusout", check)
         function check() {
-            if (input < 10 && input > 0 && input) { minutes_input.value = `0${input}`; }
+            if (input < 10 && input > -1 && input) { minutes_input.value = `0${input}`; }
+            if (input === 0) { minutes_input.value = `00`; }
             if (input === undefined || isNaN(input) || input > 59) {
-                console.log("input not allowed");
                 timer.set_minutes(start_value);
                 minutes_input.removeEventListener("focusout", check);
                 return
@@ -388,11 +390,10 @@ const timer = {
             input = parseInt(seconds_input.value);
         });
         seconds_input.addEventListener("focusout", check)
-        console.log("test");
         function check() {
             if (input < 10 && input > 0 && input) { seconds_input.value = `0${input}`; }
+            if (input === 0) { seconds_input.value = `00`; }
             if (input === undefined || isNaN(input) || input > 59) {
-                console.log("input not allowed");
                 timer.set_seconds(start_value);
                 seconds_input.removeEventListener("focusout", check);
                 return
@@ -402,14 +403,15 @@ const timer = {
 
     },
     start_timer: (minutes, seconds) => {
-        if (seconds === 0 && minutes === 0) {
-            // timer finished
-            console.log("finished");
-            document.querySelector(".potContainer").style.display = "none";
-            document.querySelector(".finishedEgg").style.display = "flex";
-            return
-        }
+        minutes_input.setAttribute("disabled", true);
+        seconds_input.setAttribute("disabled", true);
+        if (timer.pause) { timer.pause_timer(); return }
+        if (seconds === 0 && minutes === 0) { timer.finished();return }
+        if (seconds === 0 ) { seconds = 60 }
+
         timeoutID = setTimeout(() => {
+        if (timer.pause) { timer.pause_timer(); return }
+
             seconds -= 1
             if (seconds === 0 && minutes > 0) {
                 minutes -= 1;
@@ -421,22 +423,58 @@ const timer = {
             timer.start_timer(minutes, seconds);
         }, 1000)
     },
+    pause: false,
+    pause_timer: ()=>{
+        timer.pause = true;
+        pause_button.querySelector("p").textContent = "RESUME";
+        timer_dom.querySelectorAll("input").forEach(input =>{input.classList.add("pause")})
+        timer_dom.querySelector("#semi_colon").classList.add("pause");
+        pause_button.querySelector(".pause_icon").classList.add("resume_icon");
+        pause_button.removeEventListener("click", timer.pause_timer);
+        pause_button.addEventListener("click", timer.resume_timer);
+    },
+    resume_timer: ()=>{
+        timer.pause = false;
+        pause_button.querySelector("p").textContent = "PAUSE";
+        timer_dom.querySelectorAll("input").forEach(input =>{input.classList.remove("pause")})
+        timer_dom.querySelector("#semi_colon").classList.remove("pause");
+        pause_button.querySelector(".pause_icon").classList.remove("resume_icon");
+        pause_button.addEventListener("click", timer.pause_timer);
+        pause_button.removeEventListener("click", timer.resume_timer);
+        timer.start_timer(minutes_input.value, seconds_input.value);
+    },
+    finished: ()=>{
+        document.querySelector(".potContainer").style.display = "none";
+        document.querySelector(".finishedEgg").style.display = "flex";
+        const alarm_sound = new Audio("/media/alarm.mp3");
+        alarm_sound.loop = true;
+        alarm_sound.play();
+
+        start_button.addEventListener("click", ()=>{ timer.stop_alarm(alarm_sound); });
+    },
+    stop_alarm: (alarm_sound)=>{
+        alarm_sound.loop = false;
+        alarm_sound.muted = true;
+    },
 
     startValues: {
         minutes: "",
         seconds: "",
-    }
+    },
+
+    
 }
+
 // add events
 function add_event_listeners(params) {
     minutes_input.addEventListener("focus", () => {
         const start_value = parseInt(minutes_input.value);
         timer.minutes_input_check(start_value);
-    })
+    });
     seconds_input.addEventListener("focus", () => {
         const start_value = parseInt(seconds_input.value);
         timer.seconds_input_check(start_value);
-    })
+    });
 
     start_button.addEventListener("click", (e) => {
         const selectionContainer = document.querySelector("#selection_container");
@@ -446,6 +484,7 @@ function add_event_listeners(params) {
         const seconds = parseInt(seconds_input.value);
 
         if (timerBtn.textContent === "START") {
+            timer.pause = false;
             timer.startValues.minutes = minutes;
             timer.startValues.seconds = seconds;
             selectionContainer.style.left = "100vw";
@@ -455,6 +494,8 @@ function add_event_listeners(params) {
             document.querySelector("#start_button").classList.remove("big");
             document.querySelector("#pause_button").style.display = "flex";
             timer.start_timer(minutes, seconds);
+
+            pause_button.addEventListener("click", timer.pause_timer);
         } else {
             selectionContainer.style.left = "0vw";
             countdownContainer.style.right = "100vw";
@@ -468,6 +509,8 @@ function add_event_listeners(params) {
             clearTimeout(timeoutID);
             timer.set_minutes(timer.startValues.minutes);
             timer.set_seconds(timer.startValues.seconds);
+            minutes_input.removeAttribute("disabled");
+            seconds_input.removeAttribute("disabled");
         }
     });
 
@@ -514,7 +557,8 @@ function add_event_listeners(params) {
         })
         document.body.append(guide_dom);
 
-    })
+    });
+
 }
 
 add_event_listeners();

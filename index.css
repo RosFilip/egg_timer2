@@ -310,6 +310,16 @@ input {
     font-size: 56px;
     background-color: transparent;
     text-align: center;
+
+    &.pause{ animation: timer_paused 1.8s infinite; }
+}
+
+
+@keyframes timer_paused {
+    0%  { color: white; }
+    49% { color: white; }
+    50% { color: rgb(110, 110, 110); }
+    100%{ color: rgb(110, 110, 110); }
 }
 
 #timer input:focus {
@@ -319,6 +329,7 @@ input {
 
 #timer>#semi_colon {
     font-size: 56px;
+    &.pause{ animation: timer_paused 1.8s infinite; }
 }
 
 #timer_buttons {
@@ -347,7 +358,7 @@ input {
     align-items: center;
     justify-content: center;
     gap: 2vw;
-    width: 30vw;
+    width: 35vw;
     margin-top: 40px;
     background-color: var(--color-darkBlue);
     border: 2px solid var(--color-goldish);
@@ -387,4 +398,19 @@ input {
 
 .stop_icon {
     background-image: url("media/stop_white_24dp.svg");
+}
+
+.resume_icon {
+    background-image: url("media/start.svg");
+}
+
+.finishedEgg{
+    position: relative;
+}
+
+#gif_cover{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
 }
