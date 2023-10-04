@@ -39,7 +39,7 @@ header {
 
 .potContainer {
     padding: 20px;
-    display: none;
+    display: block;
 }
 
 #potBottom {
@@ -85,8 +85,8 @@ header {
     display: flex;
     justify-content: center;
 
-    /* animation: shakeLid linear infinite;
-    animation-duration: 1s; */
+    animation: shakeLid linear infinite;
+    animation-duration: 1s;
 
     &::before {
         content: "";
@@ -113,7 +113,7 @@ header {
 }
 
 .finishedEgg {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     background-image: url("./media/egg.png");
@@ -159,9 +159,9 @@ header {
     width: 10vw;
     border-radius: 50%;
     background-color: #2aa5d6;
-    /* animation: floatBubble linear infinite,
+    animation: floatBubble linear infinite,
         sideWays ease-in-out infinite alternate;
-    animation-duration: 8s, 1s; */
+    animation-duration: 8s, 1s;
 
     &::before {
         content: "";

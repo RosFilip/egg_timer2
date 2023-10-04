@@ -267,6 +267,8 @@ const egg_combinations = [
         seconds: 24,
     },
 ];
+
+let timeoutID = "";
 start_app();
 function start_app() {
     const saved_settings = JSON.parse(localStorage.getItem("saved_settings"));
@@ -403,9 +405,11 @@ const timer = {
         if (seconds === 0 && minutes === 0) {
             // timer finished
             console.log("finished");
+            document.querySelector(".potContainer").style.display = "none";
+            document.querySelector(".finishedEgg").style.display = "flex";
             return
         }
-        setTimeout(() => {
+        timeoutID = setTimeout(() => {
             seconds -= 1
             if (seconds === 0 && minutes > 0) {
                 minutes -= 1;
@@ -417,6 +421,11 @@ const timer = {
             timer.start_timer(minutes, seconds);
         }, 1000)
     },
+
+    startValues: {
+        minutes: "",
+        seconds: "",
+    }
 }
 // add events
 function add_event_listeners(params) {
@@ -433,22 +442,33 @@ function add_event_listeners(params) {
         const selectionContainer = document.querySelector("#selection_container");
         const countdownContainer = document.querySelector(".countdown_container");
         const timerBtn = document.querySelector("#start_button p");
+        const minutes = parseInt(minutes_input.value);
+        const seconds = parseInt(seconds_input.value);
 
         if (timerBtn.textContent === "START") {
+            timer.startValues.minutes = minutes;
+            timer.startValues.seconds = seconds;
             selectionContainer.style.left = "100vw";
             countdownContainer.style.right = "0vw";
             timerBtn.textContent = "STOP";
             document.querySelector("#start_button .timer_icon").classList.add("stop_icon");
+            document.querySelector("#start_button").classList.remove("big");
+            document.querySelector("#pause_button").style.display = "flex";
+            timer.start_timer(minutes, seconds);
         } else {
             selectionContainer.style.left = "0vw";
             countdownContainer.style.right = "100vw";
             timerBtn.textContent = "START";
             document.querySelector("#start_button .timer_icon").classList.remove("stop_icon");
+            document.querySelector("#start_button").classList.add("big");
+            document.querySelector(".potContainer").style.display = "block";
+            document.querySelector(".finishedEgg").style.display = "none";
+            document.querySelector("#pause_button").style.display = "none";
+
+            clearTimeout(timeoutID);
+            timer.set_minutes(timer.startValues.minutes);
+            timer.set_seconds(timer.startValues.seconds);
         }
-        const minutes = parseInt(minutes_input.value);
-        const seconds = parseInt(seconds_input.value);
-        console.log("start timer");
-        timer.start_timer(minutes, seconds);
     });
 
     guide_button.addEventListener("click", () => {

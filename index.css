@@ -309,6 +309,22 @@ input {
     gap: 15vw;
 }
 
+#start_button.big {
+    width: 50vw;
+
+    & p {
+        font-size: 9vw;
+    }
+
+    & div {
+        height: 9vw;
+        width: 9vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
 .timer_btn {
     display: flex;
     align-items: center;
@@ -340,6 +356,10 @@ input {
     }
 }
 
+#pause_button {
+    display: none;
+}
+
 .timer_icon {
     background-image: url("./media/timer_white_24dp.svg");
 }
@@ -349,5 +369,5 @@ input {
 }
 
 .stop_icon {
-    background-image: url("media/play_circle_white_24dp.svg");
+    background-image: url("media/stop_white_24dp.svg");
 }
