@@ -441,7 +441,9 @@ const timer = {
         pause_button.querySelector(".pause_icon").classList.remove("resume_icon");
         pause_button.addEventListener("click", timer.pause_timer);
         pause_button.removeEventListener("click", timer.resume_timer);
-        timer.start_timer(minutes_input.value, seconds_input.value);
+        const minutes = parseInt(minutes_input.value)
+        const seconds = parseInt(seconds_input.value)
+        timer.start_timer(minutes, seconds);
     },
     finished: ()=>{
         document.querySelector(".potContainer").style.display = "none";
