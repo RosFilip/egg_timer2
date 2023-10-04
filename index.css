@@ -55,6 +55,71 @@ body {
 input {
     background-color: transparent;
 }
+/* GUIDE BUTTON */
+#guide_button{
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    top: 5px;
+    right: 5px;
+
+    background: transparent;
+    border: none;
+    background-image: url(/media/info.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    
+    cursor: pointer;
+}
+
+#guide_container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    border: 20px;
+}
+
+#guide{
+    display: block;
+    position: relative;
+    height: 90%;
+    width: 90%;
+    background: aliceblue;
+    border-radius: 20px;
+    padding: 3vw;
+}
+
+#guide  div *{
+    color: black;
+}
+#guide  div .text{
+    margin-left: 8vw;
+}
+
+#guide > #close_button{
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    top: 5px;
+    right: 5px;
+
+    background: transparent;
+    border: none;
+    background-image: url(/media//plus-svgrepo-com.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    transform: rotate(45deg);
+
+    cursor: pointer;
+}
+
+/* SELECTION CONTAINER */
 
 .content_container {
     height: 70%;

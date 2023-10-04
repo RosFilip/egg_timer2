@@ -284,16 +284,17 @@ function start_app() {
     }
 
     return {
-        minutes_input: document.querySelector("#minutes"),
-        seconds_input: document.querySelector("#seconds"),
-        start_button: document.querySelector("#start_button"),
-        egg_sizes: document.querySelectorAll(".egg_size"),
-        slider: document.querySelector("#slider"),
-        temp_selectors: document.querySelectorAll("#temp_selector_container .temp_selector"),
+        minutes_input:  document.querySelector("#minutes"),
+        seconds_input:  document.querySelector("#seconds"),
+        start_button:   document.querySelector("#start_button"),
+        egg_sizes:      document.querySelectorAll(".egg_size"),
+        slider:         document.querySelector("#slider"),
+        temp_selectors:  document.querySelectorAll("#temp_selector_container .temp_selector"),
+        guide_button: document.querySelector("#guide_button"),
     }
 }
 
-const { minutes_input, seconds_input, start_button, egg_sizes, slider, temp_selectors } = start_app();
+const {minutes_input, seconds_input, start_button, egg_sizes, slider, temp_selectors, guide_button} = start_app();
 
 
 // Selection functions
@@ -423,8 +424,7 @@ function add_event_listeners(params) {
         const start_value = parseInt(minutes_input.value);
         timer.minutes_input_check(start_value);
     })
-    seconds_input.addEventListener("focus", () => {
-        console.log("test");
+    seconds_input.addEventListener("focus", ()=>{
         const start_value = parseInt(seconds_input.value);
         timer.seconds_input_check(start_value);
     })
@@ -437,6 +437,51 @@ function add_event_listeners(params) {
         const seconds = parseInt(seconds_input.value);
         timer.start_timer(minutes, seconds);
     });
+
+    guide_button.addEventListener("click", ()=>{
+        const guide_dom = document.createElement("div");
+        guide_dom.id = "guide_container";
+        guide_dom.innerHTML = `
+        <div id="guide">
+            <button id="close_button"></button>
+            <div>
+                <h2>How to</h2>
+                    <br>
+                <p class="step">1: choose size!</p>
+                    <br>
+                        <p class="text">Start with choosing your estimated egg size based on its weight in grams</p>
+                    <br>
+                    <br>
+                <p class="step">2: choose how you like your egg</p>
+                    <br>
+                        <p class="text">Do you like em runny or perhaps you simply hate consuming any form of moisture then choose the firm option</p>
+                    <br>
+                    <br>
+                <p class="step">3: cold or not? How do you store your eggs?</p>
+                    <br>
+                        <p class="text">Choose how you store your eggs, are they kept in the fridge or simply on your kitchen counter</p>
+                    <br>
+                    <br>
+                <p class="step">4: Skip all previous steps!</p>
+                    <br>
+                        <p class="text">Maybe you hate authority and being told what to do, simply choose your own time and skip the previous steps</p>
+                    <br>
+                    <br>
+                <p class="step">5: start the timer!</p>
+                    <br>
+                        <p class="text">Time to cook!</p>
+                    <br>
+            </div>
+            <div id="egg_boy"></div>
+        </div>
+        `
+
+        guide_dom.querySelector("#close_button").addEventListener("click", ()=>{
+            guide_dom.remove();
+        })
+        document.body.append(guide_dom);
+
+    })
 }
 
 add_event_listeners();
