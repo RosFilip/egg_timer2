@@ -78,8 +78,11 @@ input{
     padding: 3vw;
 }
 
-#guide > p {
+#guide  div *{
     color: black;
+}
+#guide  div .text{
+    margin-left: 8vw;
 }
 
 #guide > #close_button{

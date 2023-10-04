@@ -440,22 +440,36 @@ function add_event_listeners(params) {
         guide_dom.id = "guide_container";
         guide_dom.innerHTML = `
         <div id="guide">
-            <button id="close_button"></button>;
-            <p>
-                How to
+            <button id="close_button"></button>
+            <div>
+                <h2>How to</h2>
                     <br>
-                1: choose size!
+                <p class="step">1: choose size!</p>
                     <br>
-                        Start with choosing your estimated egg size based on its weight in grams.
+                        <p class="text">Start with choosing your estimated egg size based on its weight in grams</p>
                     <br>
-                2:
                     <br>
-                3:
+                <p class="step">2: choose how you like your egg</p>
                     <br>
-                4:
+                        <p class="text">Do you like em runny or perhaps you simply hate consuming any form of moisture then choose the firm option</p>
                     <br>
-                5:
-            </p>
+                    <br>
+                <p class="step">3: cold or not? How do you store your eggs?</p>
+                    <br>
+                        <p class="text">Choose how you store your eggs, are they kept in the fridge or simply on your kitchen counter</p>
+                    <br>
+                    <br>
+                <p class="step">4: Skip all previous steps!</p>
+                    <br>
+                        <p class="text">Maybe you hate authority and being told what to do, simply choose your own time and skip the previous steps</p>
+                    <br>
+                    <br>
+                <p class="step">5: start the timer!</p>
+                    <br>
+                        <p class="text">Time to cook!</p>
+                    <br>
+            </div>
+            <div id="egg_boy"></div>
         </div>
         `
 
