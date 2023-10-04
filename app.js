@@ -290,10 +290,11 @@ function start_app() {
         egg_sizes:      document.querySelectorAll(".egg_size"),
         slider:         document.querySelector("#slider"),
         temp_selectors:  document.querySelectorAll("#temp_selector_container .temp_selector"),
+        guide_button: document.querySelector("#guide_button"),
     }
 }
 
-const {minutes_input, seconds_input, start_button, egg_sizes, slider, temp_selectors} = start_app();
+const {minutes_input, seconds_input, start_button, egg_sizes, slider, temp_selectors, guide_button} = start_app();
 
 
 // Selection functions
@@ -424,17 +425,46 @@ function add_event_listeners(params) {
         timer.minutes_input_check(start_value);
     })
     seconds_input.addEventListener("focus", ()=>{
-        console.log("test");
         const start_value = parseInt(seconds_input.value);
         timer.seconds_input_check(start_value);
     })
 
     start_button.addEventListener("click", (e)=>{
-        console.log("start timer");
         const minutes = parseInt(minutes_input.value);
         const seconds = parseInt(seconds_input.value);
         timer.start_timer(minutes, seconds);
     });
+
+    guide_button.addEventListener("click", ()=>{
+        const guide_dom = document.createElement("div");
+        guide_dom.id = "guide_container";
+        guide_dom.innerHTML = `
+        <div id="guide">
+            <button id="close_button"></button>;
+            <p>
+                How to
+                    <br>
+                1: choose size!
+                    <br>
+                        Start with choosing your estimated egg size based on its weight in grams.
+                    <br>
+                2:
+                    <br>
+                3:
+                    <br>
+                4:
+                    <br>
+                5:
+            </p>
+        </div>
+        `
+
+        guide_dom.querySelector("#close_button").addEventListener("click", ()=>{
+            guide_dom.remove();
+        })
+        document.body.append(guide_dom);
+
+    })
 }
 
 add_event_listeners();
