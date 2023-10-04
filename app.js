@@ -1,3 +1,4 @@
+
 const egg_combinations = [
     {
         size: "S",
@@ -401,7 +402,7 @@ const timer = {
     },
     start_timer: (minutes, seconds) => {
         if (seconds === 0 && minutes === 0) {
-            // timer finished
+            timer.alarm.play();
             console.log("finished");
             return
         }
@@ -417,6 +418,7 @@ const timer = {
             timer.start_timer(minutes, seconds);
         }, 1000)
     },
+    alarm: new Audio('/media/alarm.mp3'),
 }
 // add events
 function add_event_listeners(params) {
