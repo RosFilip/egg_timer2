@@ -384,6 +384,7 @@ const timer = {
 
         }
     },
+
     seconds_input_check: (start_value) => {
         let input;
         seconds_input.addEventListener("keyup", (e) => {
@@ -400,17 +401,17 @@ const timer = {
             }
 
         }
-
     },
+
     start_timer: (minutes, seconds) => {
         minutes_input.setAttribute("disabled", true);
         seconds_input.setAttribute("disabled", true);
-        if (timer.pause) { timer.pause_timer(); return }
+        if (timer.paused) { timer.pause(); return }
         if (seconds === 0 && minutes === 0) { timer.finished();return }
         if (seconds === 0 ) { seconds = 60 }
 
         timeoutID = setTimeout(() => {
-        if (timer.pause) { timer.pause_timer(); return }
+        if (timer.paused) { timer.pause(); return }
 
             seconds -= 1
             if (seconds === 0 && minutes > 0) {
@@ -423,24 +424,25 @@ const timer = {
             timer.start_timer(minutes, seconds);
         }, 1000)
     },
-    pause: false,
-    pause_timer: ()=>{
-        timer.pause = true;
+    paused: false,
+    pause: ()=>{
+        timer.paused = true;
         pause_button.querySelector("p").textContent = "RESUME";
         timer_dom.querySelectorAll("input").forEach(input =>{input.classList.add("pause")})
         timer_dom.querySelector("#semi_colon").classList.add("pause");
         pause_button.querySelector(".pause_icon").classList.add("resume_icon");
-        pause_button.removeEventListener("click", timer.pause_timer);
-        pause_button.addEventListener("click", timer.resume_timer);
+        pause_button.removeEventListener("click", timer.pause);
+        pause_button.addEventListener("click", timer.resume);
     },
-    resume_timer: ()=>{
-        timer.pause = false;
+    resume: (just_reset)=>{
+        timer.paused = false;
         pause_button.querySelector("p").textContent = "PAUSE";
         timer_dom.querySelectorAll("input").forEach(input =>{input.classList.remove("pause")})
         timer_dom.querySelector("#semi_colon").classList.remove("pause");
         pause_button.querySelector(".pause_icon").classList.remove("resume_icon");
-        pause_button.addEventListener("click", timer.pause_timer);
-        pause_button.removeEventListener("click", timer.resume_timer);
+        pause_button.addEventListener("click", timer.pause);
+        pause_button.removeEventListener("click", timer.resume);
+        if (just_reset === true) { return }
         const minutes = parseInt(minutes_input.value)
         const seconds = parseInt(seconds_input.value)
         timer.start_timer(minutes, seconds);
@@ -486,7 +488,7 @@ function add_event_listeners(params) {
         const seconds = parseInt(seconds_input.value);
 
         if (timerBtn.textContent === "START") {
-            timer.pause = false;
+            timer.paused = false;
             timer.startValues.minutes = minutes;
             timer.startValues.seconds = seconds;
             selectionContainer.style.left = "100vw";
@@ -497,8 +499,10 @@ function add_event_listeners(params) {
             document.querySelector("#pause_button").style.display = "flex";
             timer.start_timer(minutes, seconds);
 
-            pause_button.addEventListener("click", timer.pause_timer);
+            pause_button.addEventListener("click", timer.pause);
         } else {
+            console.log(timer.paused);
+            if (timer.paused) {  timer.resume(true)  };
             selectionContainer.style.left = "0vw";
             countdownContainer.style.right = "100vw";
             timerBtn.textContent = "START";

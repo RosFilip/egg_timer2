@@ -181,7 +181,7 @@ input {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    
+
     &#S{height: 52px;}
     &#M{height: 65px;}
     &#L{height: 76px;}
@@ -312,10 +312,10 @@ input {
 
 
 @keyframes timer_paused {
-    0%  { color: white; }
-    49% { color: white; }
-    50% { color: rgb(110, 110, 110); }
-    100%{ color: rgb(110, 110, 110); }
+    0%  { color: rgb(110, 110, 110); }
+    49% { color: rgb(110, 110, 110); }
+    50% { color: white }
+    100%{ color: white }
 }
 
 #timer input:focus {
