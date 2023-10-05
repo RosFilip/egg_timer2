@@ -423,11 +423,13 @@ const timer = {
         minutes_input.setAttribute("disabled", true);
         seconds_input.setAttribute("disabled", true);
         if (timer.paused) { timer.pause(); return }
-        if (seconds === 0 && minutes === 0) { timer.finished();return }
-        if (seconds === 0 ) { seconds = 60 }
-
+        if (seconds === 0 && minutes === 0) { timer.finished(); return }
+        if (seconds === 0) { seconds = 60 }
+        if (timer.startValues.totalTime.betwenTime === timer.startValues.totalTime.fullTime) { document.querySelector("#potLid").style.animationDuration = ".6s" }
+        if (timer.startValues.totalTime.halfTime === timer.startValues.totalTime.fullTime) { document.querySelector("#potLid").style.animationDuration = ".4s" }
+        if (timer.startValues.totalTime.almostTime === timer.startValues.totalTime.fullTime) { document.querySelector("#potLid").style.animationDuration = ".2s" }
         timeoutID = setTimeout(() => {
-        if (timer.paused) { timer.pause(); return }
+            if (timer.paused) { timer.pause(); return }
 
             seconds -= 1
             if (seconds === 0 && minutes > 0) {
@@ -435,25 +437,26 @@ const timer = {
                 seconds = 59;
             }
 
-            timer.set_minutes(minutes)
+            timer.set_minutes(minutes);
             timer.set_seconds(seconds);
+            timer.startValues.totalTime.fullTime--;
             timer.start_timer(minutes, seconds);
         }, 1000)
     },
     paused: false,
-    pause: ()=>{
+    pause: () => {
         timer.paused = true;
         pause_button.querySelector("p").textContent = "RESUME";
-        timer_dom.querySelectorAll("input").forEach(input =>{input.classList.add("pause")})
+        timer_dom.querySelectorAll("input").forEach(input => { input.classList.add("pause") })
         timer_dom.querySelector("#semi_colon").classList.add("pause");
         pause_button.querySelector(".pause_icon").classList.add("resume_icon");
         pause_button.removeEventListener("click", timer.pause);
         pause_button.addEventListener("click", timer.resume);
     },
-    resume: (just_reset)=>{
+    resume: (just_reset) => {
         timer.paused = false;
         pause_button.querySelector("p").textContent = "PAUSE";
-        timer_dom.querySelectorAll("input").forEach(input =>{input.classList.remove("pause")})
+        timer_dom.querySelectorAll("input").forEach(input => { input.classList.remove("pause") })
         timer_dom.querySelector("#semi_colon").classList.remove("pause");
         pause_button.querySelector(".pause_icon").classList.remove("resume_icon");
         pause_button.addEventListener("click", timer.pause);
@@ -463,16 +466,16 @@ const timer = {
         const seconds = parseInt(seconds_input.value)
         timer.start_timer(minutes, seconds);
     },
-    finished: ()=>{
+    finished: () => {
         document.querySelector(".potContainer").style.display = "none";
         document.querySelector(".finishedEgg").style.display = "flex";
         const alarm_sound = new Audio("/media/alarm.mp3");
         alarm_sound.loop = true;
         alarm_sound.play();
 
-        start_button.addEventListener("click", ()=>{ timer.stop_alarm(alarm_sound); });
+        start_button.addEventListener("click", () => { timer.stop_alarm(alarm_sound); });
     },
-    stop_alarm: (alarm_sound)=>{
+    stop_alarm: (alarm_sound) => {
         alarm_sound.loop = false;
         alarm_sound.muted = true;
     },
@@ -480,9 +483,15 @@ const timer = {
     startValues: {
         minutes: "",
         seconds: "",
+        totalTime: {
+            fullTime: "",
+            betwenTime: "",
+            halfTime: "",
+            almostTime: "",
+        },
     },
 
-    
+
 }
 
 // add events
@@ -507,18 +516,23 @@ function add_event_listeners(params) {
             timer.paused = false;
             timer.startValues.minutes = minutes;
             timer.startValues.seconds = seconds;
+            timer.startValues.totalTime.fullTime = timer.startValues.minutes * 60; // 100%
+            timer.startValues.totalTime.betwenTime = timer.startValues.totalTime.fullTime / 100 * 80; // 80%
+            timer.startValues.totalTime.halfTime = timer.startValues.totalTime.fullTime / 100 * 50; // 50%
+            timer.startValues.totalTime.almostTime = timer.startValues.totalTime.fullTime / 100 * 20; // 20%
+
             selectionContainer.style.left = "100vw";
             countdownContainer.style.right = "0vw";
             timerBtn.textContent = "STOP";
             document.querySelector("#start_button .timer_icon").classList.add("stop_icon");
             document.querySelector("#start_button").classList.remove("big");
             document.querySelector("#pause_button").style.display = "flex";
-            timer.start_timer(minutes, seconds);
+            timer.start_timer(minutes, seconds, timer.startValues.totalTimeInSeconds);
 
             pause_button.addEventListener("click", timer.pause);
         } else {
             console.log(timer.paused);
-            if (timer.paused) {  timer.resume(true)  };
+            if (timer.paused) { timer.resume(true) };
             selectionContainer.style.left = "0vw";
             countdownContainer.style.right = "100vw";
             timerBtn.textContent = "START";
@@ -528,6 +542,7 @@ function add_event_listeners(params) {
             document.querySelector(".finishedEgg").style.display = "none";
             document.querySelector("#pause_button").style.display = "none";
             document.querySelector("#title").textContent = "Eggxellent";
+            document.querySelector("#potLid").style.animationDuration = ".8s"
 
             clearTimeout(timeoutID);
             timer.set_minutes(timer.startValues.minutes);

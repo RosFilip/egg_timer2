@@ -173,7 +173,7 @@ header {
     background-color: #2aa5d6;
     animation: floatBubble linear infinite,
         sideWays ease-in-out infinite alternate;
-    animation-duration: 5s, 1s;
+    animation-duration: 8s, 1s;
 
     &::before {
         content: "";
