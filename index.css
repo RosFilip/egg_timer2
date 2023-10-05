@@ -217,6 +217,7 @@ input {
 }
 
 #egg_boild_type_container>#slider {
+    position: relative;
     display: grid;
     align-items: center;
     grid-template-columns: repeat(6, 55%);
@@ -332,19 +333,19 @@ input {
 
 @keyframes timer_paused {
     0% {
-        color: white;
+        color: rgb(110, 110, 110);
     }
 
     49% {
-        color: white;
+        color: rgb(110, 110, 110);
     }
 
     50% {
-        color: rgb(110, 110, 110);
+        color: white
     }
 
     100% {
-        color: rgb(110, 110, 110);
+        color: white
     }
 }
 
