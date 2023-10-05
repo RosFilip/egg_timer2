@@ -337,6 +337,22 @@ slider.addEventListener("scrollend", (e) => {
 
     set_egg_settings();
 })
+slider.addEventListener("touchend", (e) => {
+    const egg_slides = Array.from(document.querySelector("#slider").children);
+    const window_middle = window.innerWidth / 2;
+    const window_size_percentage = window.innerWidth / 100;
+    const selection_area_start = window_size_percentage * 30;
+    const selection_area_end = window_size_percentage * 70;
+    egg_slides.forEach(egg => {
+        egg.classList.remove("selected")
+        const egg_x_pos = egg.getBoundingClientRect().right - (egg.getBoundingClientRect().width / 2);
+        if (egg_x_pos > selection_area_start && egg_x_pos < selection_area_end) {
+            egg.classList.add("selected");
+        }
+    });
+
+    set_egg_settings();
+})
 
 function set_egg_settings(egg) {
     const size = document.querySelector(".egg_size.selected").id;
