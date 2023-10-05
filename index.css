@@ -200,6 +200,7 @@ input {
 }
 
 #egg_boild_type_container>#slider {
+    position: relative;
     display: grid;
     align-items: center;
     grid-template-columns: repeat(6, 55%);
