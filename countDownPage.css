@@ -1,7 +1,7 @@
 :root {
     --positive-angle: 2deg;
     --negative-angle: -2deg;
-    --potBorder: 4px solid black;
+    --potBorder: 3px solid black;
 }
 
 .countdown_container {
