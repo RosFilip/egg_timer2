@@ -469,6 +469,8 @@ const timer = {
     finished: () => {
         document.querySelector(".potContainer").style.display = "none";
         document.querySelector(".finishedEgg").style.display = "flex";
+        document.querySelector("#title").textContent = "Eggxellent";
+
         const alarm_sound = new Audio("/media/alarm.mp3");
         alarm_sound.loop = true;
         alarm_sound.play();
@@ -513,13 +515,14 @@ function add_event_listeners(params) {
         const seconds = parseInt(seconds_input.value);
 
         if (timerBtn.textContent === "START") {
+            document.querySelector("#title").textContent = "Lets cook";
             timer.paused = false;
             timer.startValues.minutes = minutes;
             timer.startValues.seconds = seconds;
             timer.startValues.totalTime.fullTime = timer.startValues.minutes * 60; // 100%
-            timer.startValues.totalTime.betwenTime = timer.startValues.totalTime.fullTime / 100 * 80; // 80%
+            timer.startValues.totalTime.betwenTime = timer.startValues.totalTime.fullTime / 100 * 80; // 20%
             timer.startValues.totalTime.halfTime = timer.startValues.totalTime.fullTime / 100 * 50; // 50%
-            timer.startValues.totalTime.almostTime = timer.startValues.totalTime.fullTime / 100 * 20; // 20%
+            timer.startValues.totalTime.almostTime = timer.startValues.totalTime.fullTime / 100 * 20; // 80%
 
             selectionContainer.style.left = "100vw";
             countdownContainer.style.right = "0vw";
@@ -531,7 +534,6 @@ function add_event_listeners(params) {
 
             pause_button.addEventListener("click", timer.pause);
         } else {
-            console.log(timer.paused);
             if (timer.paused) { timer.resume(true) };
             selectionContainer.style.left = "0vw";
             countdownContainer.style.right = "100vw";
@@ -541,7 +543,6 @@ function add_event_listeners(params) {
             document.querySelector(".potContainer").style.display = "block";
             document.querySelector(".finishedEgg").style.display = "none";
             document.querySelector("#pause_button").style.display = "none";
-            document.querySelector("#title").textContent = "Eggxellent";
             document.querySelector("#potLid").style.animationDuration = ".8s"
 
             clearTimeout(timeoutID);
