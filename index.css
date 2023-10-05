@@ -343,6 +343,7 @@ input {
     justify-content: center;
     align-items: center;
     height: 30%;
+    gap: 9vw;
 }
 
 #timer {
@@ -353,9 +354,9 @@ input {
 
 #timer input {
     border: none;
-    width: 72px;
+    width: 26vw;
     height: 60px;
-    font-size: 56px;
+    font-size: 18vw;
     background-color: transparent;
     text-align: center;
 
@@ -398,7 +399,9 @@ input {
 
 #timer_buttons {
     display: flex;
-    gap: 15vw;
+    gap: 8vw;
+    height: 16vw;
+    /* margin-top: 7vw; */
 }
 
 #start_button.big {
@@ -423,7 +426,7 @@ input {
     justify-content: center;
     gap: 2vw;
     width: 35vw;
-    margin-top: 40px;
+
     background-color: var(--color-darkBlue);
     border: 2px solid var(--color-goldish);
     padding: 8px 15px;
